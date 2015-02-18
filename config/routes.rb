@@ -15,10 +15,13 @@ Rails.application.routes.draw do
 
   get ':local' => 'links#redirect'
 
-  match '/', to: 'users#index', constraints: { subdomain: 'www' }, via: [:get, :post, :put, :patch, :delete]
-  match '/', to: 'links#view', constraints: { subdomain: /.+/ }, via: [:get, :post, :put, :patch, :delete]
+  # match '/', to: 'users#index', constraints: { subdomain: 'www' }, via: [:get]
+  # match '/links', to: 'links#view', constraints: { subdomain: /.+/ }, via: [:get]
+  get '/'=> 'users#index'
 
-  root to: "users#index"
+  constraints(Subdomain) do
+    match '/links' => 'links#view'
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

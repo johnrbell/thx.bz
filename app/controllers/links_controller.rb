@@ -10,12 +10,13 @@ class LinksController < ApplicationController
 	end
 
 	def redirect
-		# if (session[:user_id] != nil)
 			link = Link.find_by(local: params[:local])
-			redirect_to (link.external)
-		# else
-			# redirect_to '/'
-		# end
+			user = User.find_by(id: link.user_id)
+			if (request.subdomain == user.name)
+				redirect_to (link.external)
+			else
+				redirect_to '/links'
+			end
 	end
 
 	def create
