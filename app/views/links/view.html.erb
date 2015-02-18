@@ -2,7 +2,8 @@
 <div class="container">
   <div class="row">
 		<div class="twelve columns">
-			<h2><b>Link'd</b> <i>for TinyPass</i></h2>
+			<h2><b>thx.bz</b> <i>for <%= session[:user_name] %></i></h2>
+			<i>Simple links for your business, thx us later.</i>
 			<hr>
 			<a href='/links/new' id='makenew' class='button'>Add a Route</a>
 			<hr>
@@ -27,7 +28,7 @@
 			</form>
 		</div>
 		<div class="three columns">
-			<a href='/links/<%= link.local %>' id='gobutton' type='submit' target='_blank' class='button button-primary'>Test</a>
+			<a href='/<%= link.local %>' id='gobutton' type='submit' target='_blank' class='button button-primary'>Test</a>
 			<a href='/links/kill/<%= link.id %>' id='killbutton' type='submit' class='button'>Kill</a>
 		</div>
 	</div>
@@ -44,7 +45,7 @@
 
 <div class='footer'>
 	<div class="container"><br>
-	<b>Link'd is an internal link manager.</b><br><br>
+	<b>thx.bz is an internal link manager.</b><br><br>
 	  <div class="row">
 			<div class="six columns">
 				<b>Usage:</b>

@@ -3,12 +3,14 @@ Rails.application.routes.draw do
   root 'users#index' #landing/login page
   post '/sessions/create' => 'sessions#create'#post to start a session at login
   get '/sessions/destroy' => 'sessions#destroy'#post to end a session at logout
-
   get '/links' => 'links#view' #gets page with all links on it. 
   get '/links/:local' => 'links#redirect' #does the redirect *hopefully*
   post '/links/edit/:id' => 'links#edit'
   get '/links/kill/:id' => 'links#kill'
   post '/links/create' => 'links#create' #does post for add link
+
+  get ':local' => 'links#redirect'
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.
