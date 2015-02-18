@@ -9,9 +9,16 @@ class UsersController < ApplicationController
 	end
 
 	def create #post to create new user when user hits submit
-		new_user = User.new({name: params[:name].downcase, password: params[:password]})
-		new_user.save
-		redirect_to '/'
+		params[:name] = params[:name].downcase
+		users = User.where(name: params[:name])
+		if users
+			@error = true	
+			render "users/new"
+		else
+			new_user = User.new({name: params[:name].downcase, password: params[:password]})
+			new_user.save
+			redirect_to '/'
+		end
  	end
 
 end
