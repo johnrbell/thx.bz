@@ -23,19 +23,6 @@ class LinksController < ApplicationController
 			else
 				redirect_to '/404.html'
 			end
-			
-			#non sub domain code... DONT FUCK WITH THIS!
-			# link = Link.find_by(local: params[:local])
-			# user = User.find_by(name: params[:user_name])
-			# if user && link
-			# 	if (user.id == link.user_id)
-			# 		redirect_to (link.external)
-			# 	else
-			# 		redirect_to '/links'
-			# 	end
-			# else
-			# 	redirect_to '/'
-			# end
 	end
 
 	def create
