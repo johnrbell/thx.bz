@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
   # root 'users#index' #landing/login page
+  get '/'=> 'users#index'
+
   get '/users/new' => 'users#new' #get make new user page
   post '/users/create' => 'users#create' #post to create new user in db
 
@@ -8,16 +10,20 @@ Rails.application.routes.draw do
   get '/sessions/destroy' => 'sessions#destroy'#post to end a session at logout
 
   get '/links' => 'links#view' #gets page with all links on it. 
-  get '/links/:local' => 'links#redirect' #does the redirect *hopefully*
-  post '/links/edit/:id' => 'links#edit'
-  get '/links/kill/:id' => 'links#kill'
-  post '/links/create' => 'links#create' #does post for add link
 
-  get ':local' => 'links#redirect'
+  post '/links/edit/:id' => 'links#edit' #does the edit for a link attribute
+  get '/links/kill/:id' => 'links#kill' #does the kill for a link
+  post '/links/create' => 'links#create' #does the add a link
 
-  match '/', to: 'users#index', constraints: { subdomain: 'www' }, via: [:get]
-  match '/links', to: 'links#view', constraints: { subdomain: /.+/ }, via: [:get]
-  get '/'=> 'users#index'
+  get ':user_name/:local' => 'links#redirect'
+
+  match '*path' => redirect('/'), via: :get
+
+  
+
+  # match '/', to: 'users#index', constraints: { subdomain: 'www' }, via: [:get]
+  # match '/links', to: 'links#view', constraints: { subdomain: /.+/ }, via: [:get]
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

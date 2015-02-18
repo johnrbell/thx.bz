@@ -4,10 +4,6 @@ class UsersController < ApplicationController
 		render :index
 	end
 
-	def unmatched
-		binding.pry
-	end
-
 	def new
 		render :new
 	end
