@@ -12,7 +12,7 @@ class LinksController < ApplicationController
 	def redirect
 			link = Link.find_by(local: params[:local])
 			user = User.find_by(id: link.user_id)
-			if (request.subdomain == user.name)
+			if (request.subdomain.downcase == user.name.downcase)
 				redirect_to (link.external)
 			else
 				redirect_to '/links'
