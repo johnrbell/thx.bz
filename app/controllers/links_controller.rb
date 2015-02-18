@@ -10,17 +10,36 @@ class LinksController < ApplicationController
 	end
 
 	def redirect
-			link = Link.find_by(local: params[:local])
-			user = User.find_by(name: params[:user_name])
-			if user && link
-				if (user.id == link.user_id)
-					redirect_to (link.external)
+	
+			user = User.find_by(name: request.subdomain.downcase)
+			binding.pry
+			if user
+				link = Link.find_by(local: params[:local], user_id: user.id)
+				if link
+					redirect_to link.external
 				else
-					redirect_to '/links'
+					redirect_to '/404.html'
 				end
 			else
-				redirect_to '/'
+				redirect_to '/404.html'
 			end
+			
+			# binding.pry
+			
+
+
+			#non sub domain code... DONT FUCK WITH THIS!
+			# link = Link.find_by(local: params[:local])
+			# user = User.find_by(name: params[:user_name])
+			# if user && link
+			# 	if (user.id == link.user_id)
+			# 		redirect_to (link.external)
+			# 	else
+			# 		redirect_to '/links'
+			# 	end
+			# else
+			# 	redirect_to '/'
+			# end
 	end
 
 	def create

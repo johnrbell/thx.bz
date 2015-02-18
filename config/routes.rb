@@ -17,12 +17,8 @@ Rails.application.routes.draw do
 
   get ':user_name/:local' => 'links#redirect'
 
-  match '*path' => redirect('/'), via: :get
-
-  
-
   # match '/', to: 'users#index', constraints: { subdomain: 'www' }, via: [:get]
-  # match '/links', to: 'links#view', constraints: { subdomain: /.+/ }, via: [:get]
+  match '/:local', to: 'links#redirect', constraints: { subdomain: /.+/ }, via: [:get]
 
 
   # The priority is based upon order of creation: first created -> highest priority.
