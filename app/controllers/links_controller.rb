@@ -10,9 +10,9 @@ class LinksController < ApplicationController
 	end
 
 	def redirect
-	
+			
 			user = User.find_by(name: request.subdomain.downcase)
-			binding.pry
+			
 			if user
 				link = Link.find_by(local: params[:local], user_id: user.id)
 				if link
@@ -24,10 +24,6 @@ class LinksController < ApplicationController
 				redirect_to '/404.html'
 			end
 			
-			# binding.pry
-			
-
-
 			#non sub domain code... DONT FUCK WITH THIS!
 			# link = Link.find_by(local: params[:local])
 			# user = User.find_by(name: params[:user_name])
