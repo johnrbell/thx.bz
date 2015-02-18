@@ -59,20 +59,19 @@
 				<br>'links', 'sessions' and 'users' are reserved local paths. 
 				<br>Routes are displayed in alphabetical order by local path.
 			</div>
-		</div>
+		</div><br>
 		<a href='/sessions/destroy' id='logout' type='submit'>Log Out</a><br><br>
 	</div>
 </div>
 
-
-
+<!-- DIV FOR THE FLOATING/CENTERED ADD A ROUTE FORM -->
 <div class="add-absolute">
   <div class="addform">
     <form method='POST' action='/links/create'>
     	<label>Local Path</label>
-    	<input class='inputbox' type="text" name="local" placeholder="design_comps-client1"/><br>
+    	<input class='inputbox' type="text" name="local" id="newlocal" placeholder="design_comps-client1" required="required"/><br>
     	<label>External Link</label>
-      <input class='inputbox' type="text" name="external" placeholder="http://www.docs.google.com..."/><br>
+      <input class='inputbox' type="text" name="external" id="newexternal" placeholder="http://www.docs.google.com..." required="required"/><br>
       <input name='authenticity_token' value='<%= form_authenticity_token() %>' type='hidden'><br>
       <button class="button-primary" type="submit" id="loginbutton">Make it...</button>
       <button class="button-primary" type="submit" id="nevermind">Nevermind.</button>      
@@ -80,14 +79,13 @@
 	</div>
 </div>
 
-
+<!-- SCRIPT TO SHOW/HIDE THE FLOATIN/CENTERED ADD ROUTE FORM -->
 <script type="text/javascript">
 	$("#makenew").click(function (ev) {
 		ev.preventDefault()
-		$('.add-absolute').css('display', 'block')
-    console.log('clicked make new route')    
+			$('.add-absolute').css('display', 'block')
+	    console.log('clicked make new route')
   })
-
   $("#nevermind").click(function (ev) {
 		ev.preventDefault()
 		$('.add-absolute').css('display', 'none')

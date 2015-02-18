@@ -9,22 +9,26 @@
 	</div>
 </div>
 
-<div id='loginform'>
-	<% if @error %>
-		<center>
-			<h1 style='color:red;'>Incorrect email and/or password</h1>
-		</center>
-	<% end %>
+	<div id='createform'>
+		<% if @error %>
+			<center>
+				<h1 style='color:red;'>Nice try</h1>
+			</center>
+		<% end %>
 
-	<div class="login">
-    <form method='POST' action='/sessions/create'>
+		<h2>Create a New Account</h2>
+	<br>
+		<div class="singup">
+			<form method='POST' action='/users/create'>
     	<label>Name</label>
     	<input class='inputbox' type="text" name="name" placeholder="Name" required="required" /><br>
     	<label>Password</label>
       <input class='inputbox' type="password" name="password" placeholder="Password" required="required" /><br>
-      <input name='authenticity_token' value='<%= form_authenticity_token() %>' type='hidden'><br>
-      <button class="button-primary" type="submit" id="loginbutton">Log In</button><br>
-      <a class="button" href="/users/new">Sign Up</a>
-    </form>
+				<input name='authenticity_token' value='<%= form_authenticity_token() %>' type='hidden'>
+				<button class='button-primary' id='submit'>Sign Up</button>
+			</form>
+		</div>
 	</div>
-</div>
+	<a class="button" href="/">Back Home</a>
+	
+</center>

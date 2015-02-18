@@ -1,7 +1,7 @@
 class LinksController < ApplicationController
 	def view
 		if (session[:user_id] != nil)
-			links = Link.all
+			links = Link.where(user_id: session[:user_id])
 			links.order!('local ASC')
 			render(:view, { locals: { links: links}})
 		else
@@ -10,12 +10,16 @@ class LinksController < ApplicationController
 	end
 
 	def redirect
-		link = Link.find_by(local: params[:local])
-		redirect_to (link.external)
+		# if (session[:user_id] != nil)
+			link = Link.find_by(local: params[:local])
+			redirect_to (link.external)
+		# else
+			# redirect_to '/'
+		# end
 	end
 
 	def create
-		new_link = Link.new({local: params[:local], external: params[:external]})
+		new_link = Link.new({local: params[:local], external: params[:external], user_id: session[:user_id]})
 		new_link.save
 		redirect_to '/links#bottom'
 	end
