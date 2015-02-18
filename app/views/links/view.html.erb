@@ -1,0 +1,94 @@
+<center>
+<div class="container">
+  <div class="row">
+		<div class="twelve columns">
+			<h2><b>Link'd</b> <i>for TinyPass</i></h2>
+			<hr>
+			<a href='/links/new' id='makenew' class='button'>Add a Route</a>
+			<hr>
+		</div>
+	</div>
+
+
+
+
+<% links.each do |link| %>
+  <div class="row">
+	  <div class="three columns">
+		  <form method='POST' action='/links/edit/<%= link.id %>'>
+				<input name='authenticity_token' value='<%= form_authenticity_token() %>' type='hidden'>
+				<input class='localadd' type='text' name="local" value='<%= link.local %>'>
+		  </form>
+		</div>
+		<div class="six columns">
+		  <form method='POST' action='/links/edit/<%= link.id %>'>
+		  	<input name='authenticity_token' value='<%= form_authenticity_token() %>' type='hidden'>
+				<input class='externaladd' type='text' name='external' value='<%= link.external %>'>
+			</form>
+		</div>
+		<div class="three columns">
+			<a href='/links/<%= link.local %>' id='gobutton' type='submit' target='_blank' class='button button-primary'>Test</a>
+			<a href='/links/kill/<%= link.id %>' id='killbutton' type='submit' class='button'>Kill</a>
+		</div>
+	</div>
+  <div class="row">
+		<div class="twelve columns">
+			<hr>
+		</div>
+	</div>
+<%end%>
+</div>
+
+<a name="bottom"></a>
+
+
+<div class='footer'>
+	<div class="container"><br>
+	<b>Link'd is an internal link manager.</b><br><br>
+	  <div class="row">
+			<div class="six columns">
+				<b>Usage:</b>
+				<br>Create a local url, a single string of text.
+				<br>Add the external url, a http path. 
+				<br>Update as needed. (click, type, press enter.)
+			</div>
+			<div class="six columns">
+				<b>Notes:</b> 
+				<br>no depth to the path- ('test/link1' will not work.)
+				<br>'links', 'sessions' and 'users' are reserved local paths. 
+				<br>Routes are displayed in alphabetical order by local path.
+			</div>
+		</div>
+		<a href='/sessions/destroy' id='logout' type='submit'>Log Out</a><br><br>
+	</div>
+</div>
+
+
+
+<div class="add-absolute">
+  <div class="addform">
+    <form method='POST' action='/links/create'>
+    	<label>Local Path</label>
+    	<input class='inputbox' type="text" name="local" placeholder="design_comps-client1"/><br>
+    	<label>External Link</label>
+      <input class='inputbox' type="text" name="external" placeholder="http://www.docs.google.com..."/><br>
+      <input name='authenticity_token' value='<%= form_authenticity_token() %>' type='hidden'><br>
+      <button class="button-primary" type="submit" id="loginbutton">Make it...</button>
+      <button class="button-primary" type="submit" id="nevermind">Nevermind.</button>      
+    </form>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+	$("#makenew").click(function (ev) {
+		ev.preventDefault()
+		$('.add-absolute').css('display', 'block')
+    console.log('clicked make new route')    
+  })
+
+  $("#nevermind").click(function (ev) {
+		ev.preventDefault()
+		$('.add-absolute').css('display', 'none')
+  })
+</script>
