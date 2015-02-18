@@ -11,7 +11,8 @@ class UsersController < ApplicationController
 	def create #post to create new user when user hits submit
 		params[:name] = params[:name].downcase
 		users = User.where(name: params[:name])
-		if users
+		binding.pry
+		if users == nil
 			@error = true	
 			render "users/new"
 		else
