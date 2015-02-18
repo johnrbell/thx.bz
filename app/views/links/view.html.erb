@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
 		<div class="twelve columns">
-			<h2><b>thx.bz</b> <i>for <%= session[:user_name] %></i></h2>
+			<h2><b>thx.bz</b> for <i><%= session[:user_name] %></i></h2>
 			<i>Simple links for your business, thx us later.</i>
 			<hr>
 			<a href='/links/new' id='makenew' class='button'>Add a Route</a>
@@ -74,7 +74,7 @@
       <input class='inputbox' type="text" name="external" id="newexternal" placeholder="http://www.docs.google.com..." required="required"/><br>
       <input name='authenticity_token' value='<%= form_authenticity_token() %>' type='hidden'><br>
       <button class="button-primary" type="submit" id="loginbutton">Make it...</button>
-      <button class="button-primary" type="submit" id="nevermind">Nevermind.</button>      
+      <button class="button-primary" type="submit" id="nevermind">Nevermind.</button>
     </form>
 	</div>
 </div>
