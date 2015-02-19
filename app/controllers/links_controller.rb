@@ -18,6 +18,8 @@ class LinksController < ApplicationController
 			else
 				link = Link.find_by(local: params[:local].downcase, user_id: user.id)
 				if link
+					link.counter += 1
+					link.save
 					redirect_to link.external
 				else
 					redirect_to '/404.html'
