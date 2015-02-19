@@ -34,7 +34,7 @@
 			</form>
 		</div>
 		<div class="three columns">
-			<a href='http://<%= link.user.name %>.<%= request.host %>/<%= link.local %>' id='gobutton' type='submit' target='_blank' class='button button-primary'>Test</a>
+			<a href='http://<%= link.user.name %>.<%= request.domain %>/<%= link.local %>' id='gobutton' type='submit' target='_blank' class='button button-primary'>Test</a>
 			<a href='/links/kill/<%= link.id %>' id='killbutton' type='submit' class='button'>Kill</a>
 		</div>
 	</div>
