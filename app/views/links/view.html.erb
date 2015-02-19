@@ -57,12 +57,14 @@
 				<br>Create a local url, a single string of text.
 				<br>Add the external url, a <i>full</i> http path. 
 				<br>Update as needed. (click, type, press enter.)
+				<br><a id="moreins" href=#>More usage instructions</a>
 			</div>
 			<div class="six columns">
 				<b>Notes:</b> 
 				<br>no depth to the path- ('test/link1' will not work.)
 				<br>'links', 'sessions' and 'users' are reserved local paths. 
 				<br>Routes are displayed in alphabetical order by local path.
+				<br>Everything is normalized to lowercase on the fly
 			</div>
 		</div><br>
 		<a href='/sessions/destroy' id='logout' type='submit'>Log Out</a><br><br>
@@ -84,6 +86,28 @@
 	</div>
 </div>
 
+
+<!-- DIV FOR THE FLOATING/CENTERED MORE INSTRUCTIONS -->
+<div class="ins-absolute">
+  <div class="addform">
+  		<span id="helptext">
+  		You provide colleagues with a url like:	<b><%= session[:user_name] %>/thx.bz/design-1</b>
+  		<br>that links to design drawings...
+  		<br>
+  		<br>When the design comps change and you generate a new
+  		<br>share URL where they are hosted... come here update 
+  		<br>the external URL. 
+  		<br>
+  		<br>Your designers access the same thx.bz URL, but get 
+  		<br>the updated external URL. 
+  		</span>
+  		<br>
+      <button class="button-primary" type="submit" id="hideins">Hide This.</button>
+	</div>
+</div>
+
+
+
 <!-- SCRIPT TO SHOW/HIDE THE FLOATIN/CENTERED ADD ROUTE FORM -->
 <script type="text/javascript">
 	$("#makenew").click(function (ev) {
@@ -95,4 +119,14 @@
 		ev.preventDefault()
 		$('.add-absolute').css('display', 'none')
   })
+	$("#moreins").click(function (ev) {
+		ev.preventDefault()
+			$('.ins-absolute').css('display', 'block')
+	    console.log('clicked make new route')
+  })
+  $("#hideins").click(function (ev) {
+		ev.preventDefault()
+		$('.ins-absolute').css('display', 'none')
+  })
+  
 </script>

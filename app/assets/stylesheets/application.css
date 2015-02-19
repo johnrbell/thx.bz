@@ -45,7 +45,7 @@ hr{
 	margin-bottom: 10px;
 }
 
-.add-absolute{
+.add-absolute, .ins-absolute{
 	display: none;
 	position:absolute;
 	top:0;
@@ -64,4 +64,8 @@ hr{
 
 .localadd, .externaladd{
 	width: 90%;
+}
+
+#helptext{
+	font-size: .8em;
 }
