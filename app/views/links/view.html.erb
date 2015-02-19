@@ -12,8 +12,14 @@
 
 
 
+	<div class="row">
+		<div class="three columns"><b>Local Route</b></div>
+		<div class="six columns"><b>External Route</b></div>
+		<div class="three columns"><b>Actions</b></div>
+	</div>
 
 <% links.each do |link| %>
+
   <div class="row">
 	  <div class="three columns">
 		  <form method='POST' action='/links/edit/<%= link.id %>'>
@@ -28,7 +34,7 @@
 			</form>
 		</div>
 		<div class="three columns">
-			<a href='/<%= link.local %>' id='gobutton' type='submit' target='_blank' class='button button-primary'>Test</a>
+			<a href='http://<%= link.user.name %>.<%= request.host %>/<%= link.local %>' id='gobutton' type='submit' target='_blank' class='button button-primary'>Test</a>
 			<a href='/links/kill/<%= link.id %>' id='killbutton' type='submit' class='button'>Kill</a>
 		</div>
 	</div>
@@ -37,10 +43,9 @@
 			<hr>
 		</div>
 	</div>
+
 <%end%>
 </div>
-
-<a name="bottom"></a>
 
 
 <div class='footer'>
@@ -73,7 +78,7 @@
     	<label>External Link</label>
       <input class='inputbox' type="text" name="external" id="newexternal" placeholder="http://www.docs.google.com..." required="required"/><br>
       <input name='authenticity_token' value='<%= form_authenticity_token() %>' type='hidden'><br>
-      <button class="button-primary" type="submit" id="loginbutton">Make it...</button>
+      <button class="button-primary" type="submit" id="makeitbutton">Make it...</button>
       <button class="button-primary" type="submit" id="nevermind">Nevermind.</button>
     </form>
 	</div>

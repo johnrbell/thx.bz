@@ -10,25 +10,29 @@ class LinksController < ApplicationController
 	end
 
 	def redirect
-			
+			# binding.pry
 			user = User.find_by(name: request.subdomain.downcase)
-			
-			if user
+
+			if user == nil
+				redirect_to '/404.html'
+			else
 				link = Link.find_by(local: params[:local], user_id: user.id)
 				if link
 					redirect_to link.external
 				else
 					redirect_to '/404.html'
-				end
-			else
-				redirect_to '/404.html'
+				end				
 			end
 	end
 
 	def create
-		new_link = Link.new({local: params[:local], external: params[:external], user_id: session[:user_id]})
-		new_link.save
-		redirect_to '/links#bottom'
+		existing = Link.where(local: params[:local], user_id: session[:user_id])
+		binding.pry
+		if existing == []
+			new_link = Link.new({local: params[:local], external: params[:external], user_id: session[:user_id]})
+			new_link.save
+		end
+		redirect_to '/links'
 	end
 
 	def edit
@@ -48,8 +52,10 @@ class LinksController < ApplicationController
 	end
 
 	def kill
-		link = Link.find_by(id: params[:id])
-		link.destroy
+		if (session[:user_id] != nil)
+			link = Link.find_by(id: params[:id], user_id: session[:user_id])
+			link.destroy
+		end
 		redirect_to '/links'
 	end
 end

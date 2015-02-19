@@ -15,8 +15,6 @@ Rails.application.routes.draw do
   get '/links/kill/:id' => 'links#kill' #does the kill for a link
   post '/links/create' => 'links#create' #does the add a link
 
-  get ':user_name/:local' => 'links#redirect'
-
   # match '/', to: 'users#index', constraints: { subdomain: 'www' }, via: [:get]
   match '/:local', to: 'links#redirect', constraints: { subdomain: /.+/ }, via: [:get]
 
