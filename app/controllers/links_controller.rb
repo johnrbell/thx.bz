@@ -12,7 +12,6 @@ class LinksController < ApplicationController
 
 	def redirect
 			user = User.find_by(name: request.subdomain.downcase)
-
 			if user == nil
 				redirect_to '/404.html'
 			else
