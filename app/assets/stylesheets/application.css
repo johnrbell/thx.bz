@@ -60,6 +60,7 @@ hr{
   color:#222;
   border: 1px black solid;
   text-align:center;
+  border-radius: 7px;
 }
 
 .localadd, .externaladd{
