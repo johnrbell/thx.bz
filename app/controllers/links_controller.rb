@@ -11,24 +11,23 @@ class LinksController < ApplicationController
 	end
 
 	def redirect
-			user = User.find_by(name: request.subdomain.downcase)
-			if user == nil
-				redirect_to '/404.html'
+		user = User.find_by(name: request.subdomain.downcase)
+		if user == nil
+			redirect_to '/404.html'
+		else
+			link = Link.find_by(local: params[:local].downcase, user_id: user.id)
+			if link
+				link.counter += 1
+				link.save
+				redirect_to link.external
 			else
-				link = Link.find_by(local: params[:local].downcase, user_id: user.id)
-				if link
-					link.counter += 1
-					link.save
-					redirect_to link.external
-				else
-					redirect_to '/404.html'
-				end				
-			end
+				redirect_to '/404.html'
+			end				
+		end
 	end
 
 	def create
 		existing = Link.where(local: params[:local], user_id: session[:user_id])
-	
 		if existing == []
 			#check for leading http:// or https://, if not add it. 
 			if (params[:external][/^(http|https):\/\//] != nil)
@@ -45,18 +44,17 @@ class LinksController < ApplicationController
 
 	def edit
 		link = Link.find_by(id: params[:id])
-		if params[:local]
 			if (params[:local].downcase != "links") && (params[:local].downcase != "users") && (params[:local].downcase != "sessions")
 				link.local = params[:local]
-				link.external = params[:external]	
-				link.save
+				if (params[:external][/^(http|https):\/\//] != nil)
+					link.external = params[:external]				
+					link.save
+				else
+					params[:external] = "http://#{params[:external]}"
+					link.external = params[:external]				
+					link.save
+				end		
 			end
-		end
-		if params[:external]
-			link.local = params[:local]
-			link.external = params[:external]
-			link.save
-		end
 		redirect_to '/links'
 	end
 
