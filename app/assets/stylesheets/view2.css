@@ -83,7 +83,7 @@ body{
 	border-radius: 0px;
 	padding: 10px 20px 10px 20px;
 	margin: 0px -2px 0px -2px;
-	color: #96218c;
+	/*color: #96218c;*/
 	width: 100%
 }
 
@@ -170,6 +170,7 @@ body{
   -webkit-transform: scale(1,1); /* Chrome, Safari, Opera */
   transform: scale(1,1);
   transition: all 50ms ease-in-out;
+  color: #96218c;
 }
 
 .footer{
@@ -251,6 +252,5 @@ a, a:hover, a:visited, a:active{
 	height:150%;
 	z-index:9999;
 }
-
 
 /*div{border:1px solid blue;}*/
