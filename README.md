@@ -48,7 +48,7 @@ A colleague came to me with the example he commonly deals with:
 
 Backend is Rails. 
 
-Front end is Javascript, JQuery, Skeleton.css, and some custom CSS
+Front end is Javascript, JQuery, Skeleton.css, and lots of custom CSS
 
 Database is PSQL
 
