@@ -17,7 +17,11 @@ class UsersController < ApplicationController
 		else
 			new_user = User.new({name: params[:name].downcase, password: params[:password]})
 			new_user.save
-			redirect_to '/'
+
+			session[:user_id] = new_user.id #sets the session hash user_id to user.id
+			session[:user_name] = new_user.name
+			redirect_to '/links' #redirects to posts view all page
+
 		end
  	end
 
