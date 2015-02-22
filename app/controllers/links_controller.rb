@@ -43,6 +43,8 @@ class LinksController < ApplicationController
 
 	def edit
 		link = Link.find_by(id: params[:id])
+		existing = Link.where(local: params[:local])
+		if existing  == []
 			if (params[:local].downcase != "links") && (params[:local].downcase != "users") && (params[:local].downcase != "sessions")
 				link.local = params[:local]
 				if (params[:external][/^(http|https):\/\//] != nil)
@@ -54,6 +56,7 @@ class LinksController < ApplicationController
 					link.save
 				end		
 			end
+		end
 		redirect_to '/links'
 	end
 
