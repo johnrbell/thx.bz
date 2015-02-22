@@ -191,7 +191,12 @@ a, a:hover, a:visited, a:active{
 	padding-top: 5px;
 	margin-top: -5px;
 }
-
+.goicon{
+	/*background-color: red;*/
+	height: 35px;
+	padding-top: 5px;
+	margin-top: -5px;
+}
 
 .floating-menu{
 	border-radius: 5px;

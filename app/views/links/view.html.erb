@@ -56,9 +56,9 @@
 	    </div>
     </div>
     <div class="one column" id='gobox'>
-	    
+	    <div class="goicon">
 	    &#8594;
-	    
+	    </div>
     </div>
 	</div>  
 </div>
@@ -106,21 +106,16 @@
 
 
 <script type="text/javascript">
-		$("#gobox").click(function (ev) {
+		$(".goicon").click(function (ev) {
 		ev.preventDefault()
-		local = this.parentElement.children[0].children[0].children[1].value
+		debugger
+		local = this.parentElement.parentElement.children[0].children[0].children[1].value
 		redirect = 'http://<%= session[:user_name]%>.thx.bz/'+local
 		window.location.assign(redirect)
   })
 
-
-
-
-
 clic = 0;
-
 $('.menuicon').click(function(ev){
-
   if(clic == 0){
   	idoflink = this.parentElement.parentElement.id
   	killlink = '/links/kill/'+idoflink
@@ -131,24 +126,22 @@ $('.menuicon').click(function(ev){
 		$('.floating-menu #counter').text('Hit '+counternum+' times.')
 		$('#trash a').attr('href',killlink)
 
-			$('#shade').css('display','block')
-      $('.floating-menu').css({
-          'opacity':1,
-          'left':'50%',
-          'top':'40%'
-        });      
-      clic = 1;
-
-// debugger
+		$('#shade').css('display','block')
+    $('.floating-menu').css({
+        'opacity':1,
+        'left':'50%',
+        'top':'40%'
+      })   
+    clic = 1
 
   }else{
-	  	$('#shade').css('display','none')
-      $('.floating-menu').css(
-          {
-          	'top':-500,
-            'opacity':0
-          });
-      clic = 0;
+  	$('#shade').css('display','none')
+    $('.floating-menu').css(
+        {
+        	'top':-500,
+          'opacity':0
+        });
+    clic = 0
   }
 })
 
