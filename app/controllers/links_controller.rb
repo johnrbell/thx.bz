@@ -2,7 +2,6 @@ class LinksController < ApplicationController
 	def view
 		if (session[:user_id] != nil)
 			links = Link.where(user_id: session[:user_id])
-
 			links.order!('local ASC')
 			render(:view, { locals: { links: links}})
 		else
