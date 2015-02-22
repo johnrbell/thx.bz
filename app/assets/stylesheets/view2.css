@@ -94,14 +94,13 @@ body{
 #newlocal, 
 #linklocal{
 	height: 51px;
-	background-color: white;
+	/*background-color: white;*/
 	border-right: 0;
 }
 
 #newexternal, 
 #linkexternal{
 	height: 51px;
-	background-color: white;
 	border-left: 1px solid #ddd;
 	border-right: 0;
 }
@@ -157,7 +156,7 @@ body{
 
 
 #individual{
-	background-color: white;
+	/*background-color: white;*/
 	opacity: .6;
 	margin: -3px 0px 0px 0px;
 	-ms-transform: scale(.98,.98); /* IE 9 */
@@ -176,6 +175,30 @@ body{
   transition: all 50ms ease-in-out;
   color: #96218c;
 }
+
+
+#individual:hover{
+	opacity: 1;
+ 	box-shadow: 0px 4px 2px rgba(0,0,0,.2);
+  z-index: 999;
+  -ms-transform: scale(1,1); /* IE 9 */
+  -webkit-transform: scale(1,1); /* Chrome, Safari, Opera */
+  transform: scale(1,1);
+  transition: all 50ms ease-in-out;
+  color: #96218c;
+}
+
+#individual:hover input{
+	border-top: 0px solid black;
+	border-bottom: 0px solid black;
+}
+
+#individual:hover div{
+	border-top: 0px solid black;
+	border-bottom: 0px solid black;
+}
+
+
 
 .footer{
 	font-size: 12px;
