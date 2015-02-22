@@ -93,7 +93,7 @@
 
 
 <div class="floating-menu">
-	<div id='popinfo'></div>
+	<div id='popinfo'><a href=#>Go</a></div>
 	<div id="trash">
     <a href=#>Kill</a>
   </div>
@@ -121,9 +121,11 @@ $('.menuicon').click(function(ev){
   	killlink = '/links/kill/'+idoflink
   	counternum = this.parentElement.parentElement.getAttribute('data-counter')
   	local = this.parentElement.parentElement.children[0].children[0].children[1].value
-  	local = '<%= session[:user_name] %>.thx.bz/'+local
-  	
-		$('.floating-menu #popinfo').text(local)
+  	// debugger
+  	$('.floating-menu #popinfo a').attr  ('href','http://<%= session[:user_name] %>.thx.bz/'+local)
+  	$('.floating-menu #popinfo a').text('<%= session[:user_name] %>.thx.bz/'+local)
+		// $('.floating-menu #popinfo').text(local)
+
 		$('.floating-menu #counter').text('Hit '+counternum+' times.')
 		$('#trash a').attr('href',killlink)
 
