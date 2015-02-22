@@ -152,9 +152,6 @@ body{
 }
 
 
-
-div{border:0px solid blue;}
-
 #individual{
 	background-color: white;
 	opacity: .6;
@@ -223,18 +220,19 @@ a, a:hover, a:visited, a:active{
 #trash{
 	float: right;
 	margin-top: 10px;
-	width: 50px;
+	width: 40px;
 	font-size: 1.2em;
-	margin-right: 60px;
+	margin-right: 30px;
 }
 
 #counter{
 	float: left;
 	margin-top: 10px;
-	width: 100px;
+	width: 250px;
 	font-size: 1.2em;	
-	margin-left: 60px;
+	margin-left: 30px;
 }
+
 #popinfo{
 	color: #666;
 	margin-top: 15px;
@@ -252,3 +250,6 @@ a, a:hover, a:visited, a:active{
 	height:100%;
 	z-index:9999;
 }
+
+
+/*div{border:1px solid blue;}*/
