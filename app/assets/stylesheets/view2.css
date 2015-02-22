@@ -226,6 +226,7 @@ a, a:hover, a:visited, a:active{
 }
 
 #counter{
+	text-align: left;
 	float: left;
 	margin-top: 10px;
 	width: 250px;
