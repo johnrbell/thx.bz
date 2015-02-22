@@ -2,32 +2,32 @@
 <div class="container">
   <div class="row">
 		<div class="twelve columns">
-			<h2><b>thx.bz</b></h2>
+			<h2><b>Sign Up @ thx.bz</b></h2>
 			<i>Simple links for your business, thx us later.</i>
 			<hr>
 		</div>
 	</div>
 </div>
 
-	<div id='createform'>
-		<h2>Create a New Account</h2>
+	<div id='createform'>		
 		<% if @error %>
 			<center>
 				<h3 style='color:red;'>User already exists.</h3>
 			</center>
 		<% end %>
-	<br>
+
 		<div class="singup">
 			<form method='POST' action='/users/create'>
     	<label>Name</label>
     	<input class='inputbox' type="text" name="name" placeholder="Name" required="required" /><br>
     	<label>Password</label>
       <input class='inputbox' type="password" name="password" placeholder="Password" required="required" /><br>
-				<input name='authenticity_token' value='<%= form_authenticity_token() %>' type='hidden'>
-				<button class='button' id='submit'>Sign Up</button>
+				<input name='authenticity_token' value='<%= form_authenticity_token() %>' type='hidden'><br>
+				<button class='button' id='submit'>Sign Up</button><br>
+				<a class="button" href="/">Back Home</a>
 			</form>
 		</div>
 	</div>
-	<a class="button" href="/">Back Home</a>
+	
 	
 </center>
