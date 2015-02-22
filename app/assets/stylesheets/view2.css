@@ -87,6 +87,10 @@ body{
 	width: 100%
 }
 
+#addform .inputbox{
+	color: #96218c;
+}
+
 #newlocal, 
 #linklocal{
 	height: 51px;
