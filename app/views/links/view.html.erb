@@ -121,6 +121,7 @@ $('.menuicon').click(function(ev){
   	killlink = '/links/kill/'+idoflink
   	counternum = this.parentElement.parentElement.getAttribute('data-counter')
   	local = this.parentElement.parentElement.children[0].children[0].children[1].value
+  	local = '<%= session[:user_name] %>.thx.bz/'+local
   	
 		$('.floating-menu #popinfo').text(local)
 		$('.floating-menu #counter').text('Hit '+counternum+' times.')
@@ -154,8 +155,6 @@ $('#shade').click(function(){
           });
       clic = 0;
 })
-
-
 
 </script>
 
