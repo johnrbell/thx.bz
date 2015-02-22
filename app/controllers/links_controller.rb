@@ -48,10 +48,12 @@ class LinksController < ApplicationController
 		if params[:local]
 			if (params[:local].downcase != "links") && (params[:local].downcase != "users") && (params[:local].downcase != "sessions")
 				link.local = params[:local]
+				link.external = params[:external]	
 				link.save
 			end
 		end
 		if params[:external]
+			link.local = params[:local]
 			link.external = params[:external]
 			link.save
 		end

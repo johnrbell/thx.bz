@@ -1,67 +1,81 @@
 <center>
-<div class="container">
+<div id='shade'>.</div>
+
+<div class='header'>
+	<div class='row'>
+		<div class='six columns' id='topleft'></div>
+		<div class='six columns' id='topright'></div>
+	</div>
+</div>
+
+<div id='logo'>
+	<img src='/logo.png'>
+</div>
+
+<div id='logoring'>
+	<center><div id='ring'></div></center>
+</div>
+
+<div class='container' id="addform">
   <div class="row">
-		<div class="twelve columns">
-			<h2><b>thx.bz</b> for <i><%= session[:user_name] %></i></h2>
-			<i>Simple links for your business, thx us later.</i>
-			<hr>
-			<a href='/links/new' id='makenew' class='button'>Add a Route</a>
-			<hr>
-		</div>
-	</div>
+  <form method='POST' action='/links/create'>
+  <input name='authenticity_token' value='<%= form_authenticity_token() %>' type='hidden'>
+    <div class="six columns" id='addleft'>
+    	<input class='inputbox' id="newlocal" type="text" name="local" placeholder="design_comps-client1" required="required"/>
+    </div>
+    <div class="five columns" id='addright'>
+    	<input class='inputbox' id="newexternal" type="text" name="external" placeholder="http://www.docs.google.com..." required="required"/>
+    	
+    </div>
+    <div class="one column" id='makebutton'>
+	    <button id='createbutton'>+</button>
+    </div>
+  </form>
+  </div>
+</div>
 
 
-
-	<div class="row">
-		<div class="three columns"><b>Local Route</b></div>
-		<div class="five columns"><b>External Route</b></div>
-		<div class="one columns"><b>Counter</b></div>
-		<div class="three columns"><b>Actions</b></div>
-	</div>
+<br>
 
 <% links.each do |link| %>
-
-  <div class="row">
-	  <div class="three columns">
+<div class='indcla'>
+<div class='container' id="individual">
+  <div class="row" id="<%= link.id %>" data-counter="<%= link.counter %>">
+    <div class="six columns" id='linkleft'>
 		  <form method='POST' action='/links/edit/<%= link.id %>'>
 				<input name='authenticity_token' value='<%= form_authenticity_token() %>' type='hidden'>
-				<input class='localadd' type='text' name="local" value='<%= link.local %>'>
-		  </form>
-		</div>
-		<div class="five columns">
-		  <form method='POST' action='/links/edit/<%= link.id %>'>
-		  	<input name='authenticity_token' value='<%= form_authenticity_token() %>' type='hidden'>
-				<input class='externaladd' type='text' name='external' value='<%= link.external %>'>
+				<input class='inputbox' id='linklocal' type='text' name="local" value='<%= link.local %>'>
+    </div>
+    <div class="four columns" id='linkright'>
+				<input class='inputbox' id='linkexternal' type='text' name='external' value='<%= link.external %>'>
+				<button style="visibility: hidden">edit</button>
 			</form>
-		</div>
-		<div class="one column">
-			<span class="counter">Hit <%= link.counter %> Times</span>
-		</div>
-		<div class="three columns">
-			<a href='http://<%= link.user.name %>.<%= request.domain %>/<%= link.local %>' id='gobutton' type='submit' target='_blank' class='button button-primary'>Test</a>
-			<a href='/links/kill/<%= link.id %>' id='killbutton' type='submit' class='button'>Kill</a>
-		</div>
-	</div>
-  <div class="row">
-		<div class="twelve columns">
-			<hr>
-		</div>
-	</div>
-
-<%end%>
+    </div>
+    <div class="one column" id='menubox'>
+	    <div class="menuicon">
+	    &#9776;
+	    </div>
+    </div>
+    <div class="one column" id='gobox'>
+	    
+	    &#8594;
+	    
+    </div>
+	</div>  
 </div>
+</div>
+<%end%>
 
 
 <div class='footer'>
 	<div class="container"><br>
-	<b>thx.bz is an internal link manager.</b><br><br>
 	  <div class="row">
 			<div class="six columns">
 				<b>Usage:</b>
 				<br>Make up a local url, a single string of text.
-				<br>Add the external url, a <i>full</i> http path. 
-				<br>Update as needed. (click, type, press enter.)
-				<br><a id="moreins" href=#>More usage instructions</a>
+				<br>Add the external url.
+				<br>Update as needed. (click, type, press enter)
+				<br>Click '...' for other info/options</a>
 			</div>
 			<div class="six columns">
 				<b>Notes:</b> 
@@ -75,62 +89,86 @@
 	</div>
 </div>
 
-<!-- DIV FOR THE FLOATING/CENTERED ADD A ROUTE FORM -->
-<div class="add-absolute">
-  <div class="addform">
-    <form method='POST' action='/links/create'>
-    	<label>Local Path</label>
-    	<input class='inputbox' type="text" name="local" id="newlocal" placeholder="design_comps-client1" required="required"/><br>
-    	<label>External Link</label>
-      <input class='inputbox' type="text" name="external" id="newexternal" placeholder="http://www.docs.google.com..." required="required"/><br>
-      <input name='authenticity_token' value='<%= form_authenticity_token() %>' type='hidden'><br>
-      <button class="button-primary" type="submit" id="makeitbutton">Make it...</button>
-      <button class="button-primary" type="submit" id="nevermind">Nevermind.</button>
-    </form>
-	</div>
-</div>
 
 
-<!-- DIV FOR THE FLOATING/CENTERED MORE INSTRUCTIONS -->
-<div class="ins-absolute">
-  <div class="addform">
-  		<span id="helptext">
-  		You provide colleagues with a url like:	<b><%= session[:user_name] %>/thx.bz/design-1</b>
-  		<br>that links to design drawings...
-  		<br>
-  		<br>When the design comps change and you generate a new
-  		<br>share URL where they are hosted... come here update 
-  		<br>the external URL. 
-  		<br>
-  		<br>Your designers access the same thx.bz URL, but get 
-  		<br>the updated external URL. 
-  		</span>
-  		<br>
-      <button class="button-primary" type="submit" id="hideins">Hide This.</button>
-	</div>
+
+
+<div class="floating-menu">
+	<div id='popinfo'></div>
+	<div id="trash">
+    <a href=#>Kill</a>
+  </div>
+  <div id="counter">
+    Hit 3 Times
+  </div>
 </div>
 
 
 
-<!-- SCRIPT TO SHOW/HIDE THE FLOATIN/CENTERED ADD ROUTE FORM -->
+
 <script type="text/javascript">
-	$("#makenew").click(function (ev) {
+		$("#gobox").click(function (ev) {
 		ev.preventDefault()
-			$('.add-absolute').css('display', 'block')
-	    console.log('clicked make new route')
+		local = this.parentElement.children[0].children[0].children[1].value
+		redirect = 'http://<%= session[:user_name]%>.thx.bz/'+local
+		window.location.assign(redirect)
   })
-  $("#nevermind").click(function (ev) {
-		ev.preventDefault()
-		$('.add-absolute').css('display', 'none')
-  })
-	$("#moreins").click(function (ev) {
-		ev.preventDefault()
-			$('.ins-absolute').css('display', 'block')
-	    console.log('clicked make new route')
-  })
-  $("#hideins").click(function (ev) {
-		ev.preventDefault()
-		$('.ins-absolute').css('display', 'none')
-  })
-  
+
+
+
+
+
+clic = 0;
+
+$('.menuicon').click(function(ev){
+
+  if(clic == 0){
+  	idoflink = this.parentElement.parentElement.id
+  	killlink = '/links/kill/'+idoflink
+  	counternum = this.parentElement.parentElement.getAttribute('data-counter')
+  	local = this.parentElement.parentElement.children[0].children[0].children[1].value
+  	
+		$('.floating-menu #popinfo').text(local)
+		$('.floating-menu #counter').text('Hit '+counternum+' times.')
+		$('#trash a').attr('href',killlink)
+
+			$('#shade').css('display','block')
+      $('.floating-menu').css({
+          'opacity':1,
+          'left':'50%',
+          'top':'40%'
+        });      
+      clic = 1;
+
+// debugger
+
+  }else{
+	  	$('#shade').css('display','none')
+      $('.floating-menu').css(
+          {
+          	'top':-500,
+            'opacity':0
+          });
+      clic = 0;
+  }
+})
+
+$('#shade').click(function(){
+		  	$('#shade').css('display','none')
+      $('.floating-menu').css(
+          {
+          	'top':-500,
+            'opacity':0
+          });
+      clic = 0;
+})
+
+
+
 </script>
+
+
+
+
+
+
