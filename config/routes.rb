@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   get '/'=> 'users#index'
 
   get '/users/new' => 'users#new' #get make new user page
+  get '/users/forgot' => 'users#forgot' #get i forgot my pw page...
   post '/users/create' => 'users#create' #post to create new user in db
+  post '/users/reset' => 'users#reset' #resets password to random hex, sends mail
+  get '/users/makenew' => 'users#makenew' #get make a new password after reset
+  post '/users/updatepw' => 'users#updatepw'
 
   post '/sessions/create' => 'sessions#create'#post to start a session at login
   get '/sessions/destroy' => 'sessions#destroy'#post to end a session at logout
@@ -16,6 +20,7 @@ Rails.application.routes.draw do
   post '/links/create' => 'links#create' #does the add a link
 
   # match '/', to: 'users#index', constraints: { subdomain: 'www' }, via: [:get]
+  # match '/links', to: 'links#view', constraints: { subdomain: /.+/ }, via: [:get]
   match '/:local', to: 'links#redirect', constraints: { subdomain: /.+/ }, via: [:get]
 
   # The priority is based upon order of creation: first created -> highest priority.

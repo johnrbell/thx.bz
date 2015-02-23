@@ -1,0 +1,31 @@
+<center>
+<div class="container">
+  <div class="row">
+    <div class="twelve columns">
+      <h2><b>thx.bz</b></h2>
+      <i>Simple links for your business, thx us later.</i>
+      <hr>
+    </div>
+  </div>
+</div>
+
+<div id='resetform'>
+  <% if @error %>
+    <center>
+      <h3 style='color:red;'>User not found.</h3>
+    </center>
+  <% end %>
+
+	<div class="forgot">
+    <form method='POST' action='/users/reset'>
+    	<label>Name</label>
+    	<input class='inputbox' type="text" name="name" placeholder="Name" required="required" /><br>
+      <label>Email</label>
+      <input class='inputbox' type="text" name="email" placeholder="Email" required="required" /><br>
+
+      <input name='authenticity_token' value='<%= form_authenticity_token() %>' type='hidden'><br>
+      <button class="button" type="submit" id="loginbutton">Reset My Password</button><br>
+
+      <a class="button" href="/">Back Home</a>
+    </form>
+	</div>
