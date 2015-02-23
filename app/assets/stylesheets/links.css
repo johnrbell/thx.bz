@@ -43,28 +43,30 @@ body{
 #logoring{
 	position: absolute;
 	width: 100%;
-	height: 68px;
-	top: 80px;
+	/*height: 68px;*/
+	top: 110px;
 	/*opacity: .5;*/
 }
 
 #ring{
-	width: 100px;
-	height: 100px;
+	/*width: 100px;*/
+	/*height: 100px;*/
+	height: 40px;
+	width: 40px;
 	z-index: -1;
 	background-color: #256d9f;
 	border-radius: 50%;
-  -webkit-animation: pulsate 1s ease-out;
+/*  -webkit-animation: pulsate 1s ease-out;
 	-webkit-animation-iteration-count: infinite; 
-    opacity: 0.0
+    opacity: 0.0*/
 }
 
-@-webkit-keyframes pulsate {
+/*@-webkit-keyframes pulsate {
   0% {-webkit-transform: scale(0.1, 0.1); opacity: 0.0;}
   50% {opacity: 1.0;}
   100% {-webkit-transform: scale(1.2, 1.2); opacity: 0.0;}
 }
-
+*/
 
 #addform{
 	margin-top: -65px;

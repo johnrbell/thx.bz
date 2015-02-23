@@ -108,6 +108,29 @@
 
 
 <script type="text/javascript">
+
+
+
+  function pulseLogo() {
+    $('#ring').transition({
+      scale: 6, opacity: 0, duration: 800
+    }, function(){
+        $(this).css({'transform':'', 'opacity':'1'});
+      });
+  }
+
+  $('#container').imagesLoaded( function() {
+    pulseLogo();
+  });
+
+  $('#createbutton').click(function() {
+      pulseLogo();
+  });
+
+
+
+
+
 		$(".goicon").click(function (ev) {
 		ev.preventDefault()
 		debugger
