@@ -42,8 +42,6 @@ class UsersController < ApplicationController
 			@error = true	
 			render "users/makenew"
 		end
-
-
 	end
 
 	def create #post to create new user when user hits submit
@@ -58,10 +56,9 @@ class UsersController < ApplicationController
 			
 			UserMailer.welcome_email(new_user).deliver!
 			new_user.save
-			# session[:user_id] = new_user.id #sets the session hash user_id to user.id
-			# session[:user_name] = new_user.name
-			# redirect_to '/links' #redirects to posts view all page
-			redirect_to '/'
+			session[:user_id] = new_user.id #sets the session hash user_id to user.id
+			session[:user_name] = new_user.name
+			redirect_to '/links' #redirects to posts view all page
 		end
  	end
 
