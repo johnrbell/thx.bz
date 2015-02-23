@@ -11,7 +11,6 @@ class LinksController < ApplicationController
 
 	def redirect
 		user = User.find_by(name: request.subdomain.downcase)
-		if user != session[:user_name]
 			if user == nil
 				redirect_to '/404.html'
 			else
@@ -24,17 +23,12 @@ class LinksController < ApplicationController
 					redirect_to '/404.html'
 				end				
 			end
-		else
-			redirect_to '/404.html'
-		end
-
 	end
 
 	def create
 		existing = Link.where(local: params[:local], user_id: session[:user_id])
 		if existing == []
-			#check for leading http:// or https://, if not add it. 
-			if (params[:external][/^(http|https):\/\//] != nil)
+			if (params[:external][/^(http|https):\/\//] != nil) #check for leading http:// or https://, if not add it. 
 				new_link = Link.new({local: params[:local].downcase, external: params[:external], user_id: session[:user_id]})
 				new_link.save
 			else

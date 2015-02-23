@@ -4,19 +4,19 @@ class UsersController < ApplicationController
 		render :index
 	end
 
-	def new
+	def new #make new user page
 		render :new
 	end
 
-	def forgot
+	def forgot #i forgot my pw page
 		render :forgot
 	end
 
-	def makenew
+	def makenew #make a new pw page
 		render :makenew
 	end
 
-	def updatepw
+	def updatepw #post when making new pw. 
 		params[:name] = params[:name].downcase
 		user = User.find_by(name: params[:name])
 		if user && user.authenticate(params[:temppw])
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 		end
 	end
 
-	def reset
+	def reset #post to set a temp password and an email to make new one
 		params[:name] = params[:name].downcase
 		user = User.find_by(name: params[:name],email: params[:email])
 		if user != []
