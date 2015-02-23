@@ -91,9 +91,6 @@
 </div>
 
 
-
-
-
 <div class="floating-menu">
 	<div id='popinfo'><a href=#>Go</a></div>
 	<div id="trash">
@@ -108,36 +105,29 @@
 
 
 <script type="text/javascript">
+function pulseLogo() {
+  $('#ring').transition({
+    scale: 4, opacity: 0, duration: 800
+  }, function(){
+      $(this).css({'transform':'', 'opacity':'1'});
+    });
+}
 
+$('#container').imagesLoaded( function() {
+  pulseLogo();
+});
 
+$('#createbutton').click(function() {
+  pulseLogo();
+});
 
-  function pulseLogo() {
-    $('#ring').transition({
-      scale: 6, opacity: 0, duration: 800
-    }, function(){
-        $(this).css({'transform':'', 'opacity':'1'});
-      });
-  }
-
-  $('#container').imagesLoaded( function() {
-    pulseLogo();
-  });
-
-  $('#createbutton').click(function() {
-      pulseLogo();
-  });
-
-
-
-
-
-		$(".goicon").click(function (ev) {
-		ev.preventDefault()
-		debugger
-		local = this.parentElement.parentElement.children[0].children[0].children[1].value
-		redirect = 'http://<%= session[:user_name]%>.thx.bz/'+local
-		window.location.assign(redirect)
-  })
+$(".goicon").click(function (ev) {
+	ev.preventDefault()
+	debugger
+	local = this.parentElement.parentElement.children[0].children[0].children[1].value
+	redirect = 'http://<%= session[:user_name]%>.thx.bz/'+local
+	window.location.assign(redirect)
+})
 
 clic = 0;
 $('.menuicon').click(function(ev){
@@ -146,10 +136,9 @@ $('.menuicon').click(function(ev){
   	killlink = '/links/kill/'+idoflink
   	counternum = this.parentElement.parentElement.getAttribute('data-counter')
   	local = this.parentElement.parentElement.children[0].children[0].children[1].value
-  	// debugger
+
   	$('.floating-menu #popinfo a').attr  ('href','http://<%= session[:user_name] %>.thx.bz/'+local)
   	$('.floating-menu #popinfo a').text('<%= session[:user_name] %>.thx.bz/'+local)
-		// $('.floating-menu #popinfo').text(local)
 
 		$('.floating-menu #counter').text('Hit '+counternum+' times.')
 		$('#trash a').attr('href',killlink)
@@ -161,7 +150,6 @@ $('.menuicon').click(function(ev){
         'top':'40%'
       })   
     clic = 1
-
   }else{
   	$('#shade').css('display','none')
     $('.floating-menu').css(
@@ -174,13 +162,13 @@ $('.menuicon').click(function(ev){
 })
 
 $('#shade').click(function(){
-		  	$('#shade').css('display','none')
-      $('.floating-menu').css(
-          {
-          	'top':-500,
-            'opacity':0
-          });
-      clic = 0;
+	$('#shade').css('display','none')
+  $('.floating-menu').css(
+    {
+    	'top':-500,
+      'opacity':0
+    });
+  clic = 0;
 })
 
 </script>
