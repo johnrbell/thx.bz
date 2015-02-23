@@ -1,0 +1,29 @@
+<center>
+<div class="container">
+  <div class="row">
+    <div class="twelve columns">
+      <h2><b>Make New PW @ thx.bz</b></h2>
+      <i>Simple links for your business, thx us later.</i>
+      <hr>
+    </div>
+  </div>
+</div>
+
+	<div class="makenewpw">
+  <% if @error %>
+    <center>
+      <h3 style='color:red;'>Something doesn't match.</h3>
+    </center>
+  <% end %>
+
+    <form method='POST' action='/users/updatepw'>
+    	<label>Name</label>
+    	<input class='inputbox' type="text" name="name" placeholder="Name" required="required" /><br>
+      <label>Temp Password</label>
+      <input class='inputbox' type="text" name="temppw" placeholder="Email" required="required" /><br>
+      <label>New Password</label>
+      <input class='inputbox' type="text" name="new_pw" placeholder="Email" required="required" /><br>
+      <input name='authenticity_token' value='<%= form_authenticity_token() %>' type='hidden'><br>
+      <button class="button" type="submit" id="loginbutton">Update My Password</button><br>
+    </form>
+	</div>

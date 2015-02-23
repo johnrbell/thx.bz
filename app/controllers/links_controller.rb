@@ -1,35 +1,34 @@
 class LinksController < ApplicationController
 	def view
-		if (session[:user_id] != nil)
-			links = Link.where(user_id: session[:user_id])
-			links.order!('local ASC')
-			render(:view, { locals: { links: links}})
-		else
-			redirect_to '/'
-		end
+			if (session[:user_id] != nil)
+				links = Link.where(user_id: session[:user_id])
+				links.order!('local ASC')
+				render(:view, { locals: { links: links}})
+			else
+				redirect_to '/'
+			end
 	end
 
 	def redirect
 		user = User.find_by(name: request.subdomain.downcase)
-		if user == nil
-			redirect_to '/404.html'
-		else
-			link = Link.find_by(local: params[:local].downcase, user_id: user.id)
-			if link
-				link.counter += 1
-				link.save
-				redirect_to link.external
-			else
+			if user == nil
 				redirect_to '/404.html'
-			end				
-		end
+			else
+				link = Link.find_by(local: params[:local].downcase, user_id: user.id)
+				if link
+					link.counter += 1
+					link.save
+					redirect_to link.external
+				else
+					redirect_to '/404.html'
+				end				
+			end
 	end
 
 	def create
 		existing = Link.where(local: params[:local], user_id: session[:user_id])
 		if existing == []
-			#check for leading http:// or https://, if not add it. 
-			if (params[:external][/^(http|https):\/\//] != nil)
+			if (params[:external][/^(http|https):\/\//] != nil) #check for leading http:// or https://, if not add it. 
 				new_link = Link.new({local: params[:local].downcase, external: params[:external], user_id: session[:user_id]})
 				new_link.save
 			else
