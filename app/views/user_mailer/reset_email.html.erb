@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Someone requested a password reset @ thx.bz, <%= @user.name %></h1>
+    <p>
+      your temporary password is: <%= @pw %>.<br>
+    </p>
+    <p>
+      To create a new password, using the temporary, just follow this link: <%= @url %>.
+    </p>
+    <p>thx,<br>thx.</p>
+  </body>
+</html>

@@ -12,7 +12,7 @@
 	<div id='createform'>		
 		<% if @error %>
 			<center>
-				<h3 style='color:red;'>User already exists.</h3>
+				<h3 style='color:red;'>User name already exists.</h3>
 			</center>
 		<% end %>
 
@@ -20,6 +20,8 @@
 			<form method='POST' action='/users/create'>
     	<label>Name</label>
     	<input class='inputbox' type="text" name="name" placeholder="Name" required="required" /><br>
+    	<label>Email</label>
+    	<input class='inputbox' type="text" name="email" placeholder="Email" required="required" /><br>
     	<label>Password</label>
       <input class='inputbox' type="password" name="password" placeholder="Password" required="required" /><br>
 				<input name='authenticity_token' value='<%= form_authenticity_token() %>' type='hidden'><br>
