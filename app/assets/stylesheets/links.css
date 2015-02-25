@@ -1,3 +1,4 @@
+
 @charset "utf-8";
 
 /*================================================================
@@ -12,8 +13,8 @@ div, section, ul, li, h1, h2, h3, h4, table, td, tr, form, label, iframe, img {
 	position: relative;
 	user-select: none;
 	-moz-user-select: none;
-  	-webkit-user-select: none;
-  	-ms-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
 }
 
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section {
@@ -207,15 +208,18 @@ input[type=text] {
 .main-input .add {
 	width: 70px;
 	height: 70px;
-	background: url('/add.png') no-repeat center center #95208d;	
+	background: url('/add.png') no-repeat center center #95208d;
 	cursor: pointer;
 }
 
 .saved-list {
-	margin-left: -30px;
 	box-shadow: 0px 3px 0px #c6c6e3;
 }
 
+.saved{
+	margin: 0 auto;
+}
+a
 .saved {
 	width: 1040px;
 	background: #e1ecf9;
@@ -309,4 +313,33 @@ input[type=text] {
 
 .saved .copy .btn {
 	background-image: url('/copy.png');
+}
+
+.saved .arrow .btn {
+	background-image: url('/arrow.png');
+}
+
+
+.saved .url {
+	height: 70px;
+	font-size: 18px;
+	padding: 0px 30px;
+}
+
+.saved .source{
+	width: 520px;
+	padding-left: 20;
+
+	font-size: 18px;
+	font-family: 'Code Pro W01 Lowercase', Helvetica, Arial, sans-serif;
+	background: no-repeat center center;
+}
+
+.saved .destination{
+	width: 420px;
+	padding-left: 20;
+	line-height: 70px;
+	font-size: 13px;
+	color: #b4bcce;
+	background: no-repeat center center;
 }

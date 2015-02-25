@@ -41,6 +41,7 @@ class LinksController < ApplicationController
 	end
 
 	def edit
+		binding.pry
 		link = Link.find_by(id: params[:id])
 		existing = Link.where(local: params[:local])
 		if existing  == []

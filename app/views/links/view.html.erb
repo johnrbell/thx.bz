@@ -1,52 +1,73 @@
-	<%= stylesheet_link_tag "links", :media => "all" %>	
-	
+<%= stylesheet_link_tag "links", :media => "all" %>
+
 <body id="dashboard">
 	<div class="header">
 		<div class="logo"></div>
 		<div class="pulse"></div>
 		<div class="row">
+		<form method='POST' id='makenew' action='/links/create'>
+			<input name='authenticity_token' value='<%= form_authenticity_token() %>' type='hidden'>
 			<ul class="main-input horizontal">
 				<li><div class="slash">/</div></li>
-				<li><input type="text" placeholder="newurl" class="url source"></input></li>
-				<li><input type="text" placeholder="destination.com" class="url destination"></input></li>
+				<li><input type="text" name="local" placeholder="newurl" class="url source"></input></li>
+				<li><input type="text" name="external" placeholder="destination.com" class="url destination"></input></li>
 				<li><div class="add" id="add-url"></div></li>
 			</ul>
+		</form>
 		</div>
 	</div>
-
-
 	<div class="row">
 		<ul class="saved-list">
+
 		<% links.each do |link| %>
+		<form method='POST' class='editform' action='/links/edit/<%= link.id %>'>
+			<input name='authenticity_token' value='<%= form_authenticity_token() %>' type='hidden'>
+			<input name='id' value='<%= link.id %>' type='hidden'>
 			<li><ul class="saved">
-				<li class="source"><div class="ellipsis"><span class="base"><%= link.user.name %>.thx.bz&nbsp;/&nbsp;</span><%= link.local %></div></li>
-				<li class="destination"><div class="ellipsis"><%= link.external %></div></li>
+				<li><input type="text" id="local" placeholder="newurl" class="url source" value="<%= session[:user_name] %>.thx.bz/<%= link.local %>"></input></li>
+				<li><input type="text" id="external" placeholder="destination.com" class="url destination" value="<%= link.external %>"></input></li>
 				<li class="menu"><div class="btn"></div></li>
-				<li class="copy"><div class="btn"></div></li>
-			</ul></li>			
-		<%end%>
+				<li class="arrow"><div class="btn"></div></li>
+			</ul></li>
+			<button class='hiddenbutton' style="visibility: hidden">edit</button>
+		</form>
+		<% end %>
+			
 		</ul>
 	</div>
+	<br>
 </body>
 </html>
 
 <script type="text/javascript">
-function pulseLogo() {
-	$('.pulse').transition({
-		scale: 6, opacity: 0, duration: 800
-	}, function(){
-      $(this).css({'transform':'', 'opacity':'1'});
-    });
-}
-
-$('#add-url').click(function() {
-  pulseLogo();
-});
-
-$(".goicon").click(function (ev) {
+$(".saved .source").on('click',function (ev) {
 	ev.preventDefault()
-	local = this.parentElement.parentElement.children[0].children[0].children[1].value
-	redirect = 'http://<%= session[:user_name]%>.thx.bz/'+local
-	window.location.assign(redirect)
+	string = '<%=session[:user_name]%>.thx.bz/'
+	this.value = this.value.replace(string,'')
 })
+$(".saved .source").focusout(function (ev) {
+	ev.preventDefault()
+	string = '<%=session[:user_name]%>.thx.bz/'
+	this.value = string+this.value
+})
+$(".saved .destination").on('click',function (ev) {
+	ev.preventDefault()
+	string = '<%=session[:user_name]%>.thx.bz/'
+	this.parentElement.parentElement.children[0].children[0].value = this.parentElement.parentElement.children[0].children[0].value.replace(string,'')
+})
+$(".saved .destination").focusout(function (ev) {
+	ev.preventDefault()
+	string = '<%=session[:user_name]%>.thx.bz/'
+	this.parentElement.parentElement.children[0].children[0].value = string+this.parentElement.parentElement.children[0].children[0].value
+})
+
+
+$(".add").on('click',function (ev) {
+	ev.preventDefault()
+	local = this.parentElement.parentElement.children[1].children[0].value
+	external = this.parentElement.parentElement.children[2].children[0].value
+  $('#makenew').submit();
+})
+
+
 </script>
