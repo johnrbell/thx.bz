@@ -40,8 +40,7 @@
 	<div class="footer">
 		Your links are accessable at URLs like so: 
 		<%= session[:user_name] %>.thx.bz/<% if links[0] %><%= links[0].local %>
-		<% else %>example
-		<% end %>
+		<% else %>example<% end %>
 		<br>
 		<a href='/sessions/destroy' id='logout' type='submit'>Log Out</a>
 	</footer>
