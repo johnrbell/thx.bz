@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
 
 	def index #landing page
-		render :index
+		if (session[:user_id] != nil)
+			redirect_to '/links'
+		else
+			render :index
+		end
 	end
 
 	def new #make new user page
