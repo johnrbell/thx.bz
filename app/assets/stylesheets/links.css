@@ -158,7 +158,7 @@ input[type=text] {
 	z-index: 1;
 }
 
-.logo2 {
+.userwidget {
 	position: absolute;
 	color: white;
 	padding: 0 auto;
@@ -178,7 +178,6 @@ input[type=text] {
 	z-index: 2;
 	cursor: default;
 }
-
 
 .pulse {
 	width: 40px;
