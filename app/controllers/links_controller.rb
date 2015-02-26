@@ -37,9 +37,6 @@ class LinksController < ApplicationController
 		if (session[:user_id] != nil)
 			existing = Link.where(local: params[:local], user_id: session[:user_id])
 			if existing == []
-				# if (params[:external][/^(http|https):\/\//] == nil) #check for leading http:// or https://, if not add it. 
-					# params[:external] = "http://#{params[:external]}"
-				# end
 				new_link = Link.new({local: params[:local].downcase, external: params[:external], user_id: session[:user_id]})
 				new_link.save
 			end

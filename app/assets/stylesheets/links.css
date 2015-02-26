@@ -160,7 +160,6 @@ input[type=text] {
 
 .logo2 {
 	position: absolute;
-	
 	color: white;
 	padding: 0 auto;
 	width: 50%;
@@ -173,7 +172,7 @@ input[type=text] {
 	text-transform: uppercase;
 	-webkit-font-smoothing: antialiased;
 	font-size: 2.5em;
-	padding-top: 21px;
+	padding-top: 20px;
 	margin-left: -118px;
 	margin-top: 120px;
 	z-index: 2;
