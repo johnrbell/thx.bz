@@ -393,3 +393,69 @@ input[type=text] {
 .footer a, .footer a:hover, .footer a:visited{
 	text-decoration: none;
 }
+
+
+
+
+
+
+
+
+.cardwrap {
+	margin: 0 auto;
+	width: 1040px;
+  height: 70px;
+  -webkit-perspective: 800px;
+  -moz-perspective: 800px;
+  -o-perspective: 800px;
+  perspective: 800px;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  /* Set the transition effects */
+  -webkit-transition: -webkit-transform 0.3s;
+  -moz-transition: -moz-transform 0.3s;
+  -o-transition: -o-transform 0.3s;
+  transition: transform 0.3s;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+.card.flipped, .card .back {
+  -webkit-transform: rotateX( 180deg );
+  -moz-transform: rotateX( 180deg );
+  -o-transform: rotateX( 180deg );
+  transform: rotateX( 180deg );
+}
+
+.card .front, .card .back {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.front {
+  background: #228653;
+  color: white;
+  text-align: center;
+  font-size: 4em;
+  z-index: 2
+}
+
+.back {
+  background: red;
+  color: blue;
+  text-align: center;
+  font-size: 2em;
+  z-index: 1
+}
+

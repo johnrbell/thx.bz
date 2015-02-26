@@ -22,7 +22,7 @@
 	<div class="row">
 		<ul class="saved-list">
 
-		<% links.each do |link| %>
+<!-- 		<% links.each do |link| %>
 			<form method='POST' id='editform' action='/links/edit/<%= link.id %>'>
 				<input name='authenticity_token' value='<%= form_authenticity_token() %>' type='hidden'>
 					<ul class="saved" data-id="<%= link.id %>">
@@ -33,10 +33,49 @@
 						<li class="savedmsg"><div class="savedmsgtext">Updated!</div></li>
 					</ul>
 			</form>
-		<% end %>	
+		<% end %>	 -->
+
+
+			<% links.each do |link| %>
+			<div class="cardwrap">
+			  <div class="card">
+			    <div class="front">
+						<form method='POST' id='editform' action='/links/edit/<%= link.id %>'>
+							<input name='authenticity_token' value='<%= form_authenticity_token() %>' type='hidden'>
+								<ul class="saved" data-id="<%= link.id %>">
+									<li><input type="text" name="local" class="url source" value="<%= link.local %>"></input></li>
+									<li><input type="text" name="external" class="url destination" value="<%= link.external %>"></input></li>
+									<li class="del"><div class="btn"></div></li>
+									<li class="arrow"><div class="btn"></div></li>
+									<li class="savedmsg"><div class="savedmsgtext">Updated!</div></li>
+								</ul>
+						</form>
+			    	
+			  	</div>
+			    <div class="back">
+			      <h2><%= link.local %>-<%= link.external %></h2>
+			    </div>
+			  </div>
+			</div>
+			<% end %>
 
 		</ul>
 	</div>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	<div class="footer">
 		Your links are accessable at URLs like so: 
 		<%= session[:user_name] %>.thx.bz/<% if links[0] %><%= links[0].local %>
@@ -49,5 +88,14 @@
 </html>
 
 <%= javascript_include_tag "thx" %>
+
+<script type="text/javascript">
+	$('.card').click(function(){
+  $(this).toggleClass('flipped');
+  // $('.front').css('visibility','hidden')
+});
+</script>
+
+
 
 
