@@ -158,6 +158,29 @@ input[type=text] {
 	z-index: 1;
 }
 
+.logo2 {
+	position: absolute;
+	
+	color: white;
+	padding: 0 auto;
+	width: 50%;
+	height: 60px;
+	left: 0;
+	text-align: right;
+	font-family: "Impact";
+	letter-spacing: 4px;
+	font-weight: bold;
+	text-transform: uppercase;
+	-webkit-font-smoothing: antialiased;
+	font-size: 2.5em;
+	padding-top: 21px;
+	margin-left: -118px;
+	margin-top: 120px;
+	z-index: 2;
+	cursor: default;
+}
+
+
 .pulse {
 	width: 40px;
 	height: 40px;
@@ -319,6 +342,11 @@ a
 	background-image: url('/arrow.png');
 }
 
+.saved .del .btn {
+	background-image: url('/del.png');
+}
+
+
 
 .saved .url {
 	height: 70px;
@@ -342,4 +370,20 @@ a
 	font-size: 13px;
 	color: #b4bcce;
 	background: no-repeat center center;
+}
+
+.savedmsgouter {
+	display: none;
+	position: absolute;
+  width: 1040px;
+  height: 50px;
+  text-align: center;
+  background-color: white;
+}
+.savedmsginner{
+  display: table;
+  margin: 0 auto;
+  padding-top: 25px;
+  font-size: 2em;
+	font-family: 'Code Pro W01 Lowercase', Helvetica, Arial, sans-serif;
 }

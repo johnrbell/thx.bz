@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get '/links' => 'links#view' #gets page with all links on it. 
 
   post '/links/edit/:id' => 'links#edit' #does the edit for a link attribute
-  get '/links/kill/:id' => 'links#kill' #does the kill for a link
+  post '/links/kill/:id' => 'links#kill' #does the kill for a link
   post '/links/create' => 'links#create' #does the add a link
 
   # match '/', to: 'users#index', constraints: { subdomain: 'www' }, via: [:get]

@@ -25,41 +25,6 @@ class LinksController < ApplicationController
 			end
 	end
 
-	def create
-		existing = Link.where(local: params[:local], user_id: session[:user_id])
-		if existing == []
-			if (params[:external][/^(http|https):\/\//] != nil) #check for leading http:// or https://, if not add it. 
-				new_link = Link.new({local: params[:local].downcase, external: params[:external], user_id: session[:user_id]})
-				new_link.save
-			else
-				params[:external] = "http://#{params[:external]}"
-				new_link = Link.new({local: params[:local].downcase, external: params[:external], user_id: session[:user_id]})
-				new_link.save
-			end
-		end
-		redirect_to '/links'
-	end
-
-	def edit
-		binding.pry
-		link = Link.find_by(id: params[:id])
-		existing = Link.where(local: params[:local])
-		if existing  == []
-			if (params[:local].downcase != "links") && (params[:local].downcase != "users") && (params[:local].downcase != "sessions")
-				link.local = params[:local]
-				if (params[:external][/^(http|https):\/\//] != nil)
-					link.external = params[:external]				
-					link.save
-				else
-					params[:external] = "http://#{params[:external]}"
-					link.external = params[:external]				
-					link.save
-				end		
-			end
-		end
-		redirect_to '/links'
-	end
-
 	def kill
 		if (session[:user_id] != nil)
 			link = Link.find_by(id: params[:id], user_id: session[:user_id])
@@ -67,4 +32,28 @@ class LinksController < ApplicationController
 		end
 		redirect_to '/links'
 	end
+
+	def create
+		if (session[:user_id] != nil)
+			existing = Link.where(local: params[:local], user_id: session[:user_id])
+			if existing == []
+				# if (params[:external][/^(http|https):\/\//] == nil) #check for leading http:// or https://, if not add it. 
+					# params[:external] = "http://#{params[:external]}"
+				# end
+				new_link = Link.new({local: params[:local].downcase, external: params[:external], user_id: session[:user_id]})
+				new_link.save
+			end
+			redirect_to '/links'
+		end
+	end
+
+	def edit
+		link = Link.find_by(id: params[:id])
+		link.local  = params[:local]
+	 	link.external = params[:external]
+		link.save
+		redirect_to '/links'
+	end
+
+
 end
