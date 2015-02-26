@@ -240,7 +240,7 @@ input[type=text] {
 .saved{
 	margin: 0 auto;
 }
-a
+
 .saved {
 	width: 1040px;
 	background: #e1ecf9;
@@ -376,9 +376,8 @@ a
   background-color: white;
 }
 .savedmsgtext{
-  display: table;
   margin: 0 auto;
-  padding-top: 25px;
+  padding-top: 26px;
   font-size: 2em;
 	font-family: 'Code Pro W01 Lowercase', Helvetica, Arial, sans-serif;
 }
