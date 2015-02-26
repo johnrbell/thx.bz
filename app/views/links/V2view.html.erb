@@ -1,0 +1,213 @@
+<%= stylesheet_link_tag "links", :media => "all" %>
+<link type="text/css" rel="stylesheet" href="http://fast.fonts.net/cssapi/2c2128be-1d65-4d98-989c-55fc575e7963.css"/>
+<body id="dashboard">
+  <div class="header">
+    <div class="logo"></div><div class="logo2"><%= session[:user_name] %>.</div>
+    <div class="pulse"></div>
+    <div class="row">
+    <form method='POST' id='makenew' action='/links/create'>
+      <input name='authenticity_token' value='<%= form_authenticity_token() %>' type='hidden'>
+      <ul class="main-input horizontal">
+        <li><div class="slash">/</div></li>
+        <li><input type="text" name="local" placeholder="newurl" class="url source"></input></li>
+        <li><input type="text" name="external" placeholder="destination.com" class="url destination"></input></li>
+        <li><div class="add" id="add-url"><button class='hiddenbutton' style="visibility: hidden">submit</button></div></li>
+      </ul>
+    </form>
+    </div>
+  </div>
+  <div class="row">
+    <ul class="saved-list">
+
+    <% links.each do |link| %>
+      <form method='POST' id='editform' action='/links/edit/<%= link.id %>'>
+        <input name='authenticity_token' value='<%= form_authenticity_token() %>' type='hidden'>
+        <li><ul class="saved">
+          <li><input type="text" name="local" class="url source" value="<%= link.local %>"></input></li>
+          <li><input type="text" name="external" class="url destination" value="<%= link.external %>"></input></li>
+          <li class="del" data-id="<%= link.id %>"><div class="btn"></div></li>
+          <li class="arrow"><div class="btn"></div></li>
+          <div class="savedmsgouter"><div class="savedmsginner">Saved!</div></div>
+        </ul></li>
+      </form>
+    <% end %>
+      
+    </ul>
+  </div>
+  <br>
+
+
+
+
+<div class="flip"> 
+        <div class="card"> 
+            <div class="face front"> 
+                Front
+            </div> 
+            <div class="face back"> 
+                Back
+            </div> 
+        </div> 
+</div> 
+
+
+
+
+
+
+  <br>
+</body>
+</html>
+
+
+
+<script type="text/javascript">
+$('.flip').click(function(){
+  $(this).find('.card').addClass('flipped').mouseleave(function(){
+      $(this).removeClass('flipped');
+  });
+  return false;
+});
+</script>
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+//when you click the purple add button 
+$(".add").on("click", function(e){
+  pulseLogo();
+  newlocal = this.parentElement.parentElement.children[1].children[0]
+  newexternal = this.parentElement.parentElement.children[2].children[0]
+  if ((newlocal.value != "")&&(newexternal.value != "")){
+    newexternal.value = checkforhttp(newexternal.value)
+    $('#makenew').submit()  
+  } 
+})
+
+
+//kill it when you kick delete
+$(".del").on("click", function(e){
+  idtokill = this.getAttribute('data-id')
+  $.ajax({  
+    url: '/links/kill/'+idtokill,
+    type: 'POST',
+  })
+
+  rowtokill = this.parentElement.parentElement.parentElement
+  $(rowtokill).transition({
+    scale: .1, opacity: 0, duration: 300
+  }, function(){
+    rowtokill.remove()
+  });
+})
+
+
+//go to page when you click arrow
+$(".arrow").on("click", function(e){
+  e.preventDefault()
+  local = this.parentElement.children[0].children[0].value
+  url = "http://<%= session[:user_name] %>.thx.bz/"+local
+  console.log('requested: '+url)
+  window.open(url, '_blank')
+})
+
+
+//keypress filtering for local edit form 
+$('.saved .source').keypress(function(e) {
+  regex = new RegExp("^[a-zA-Z0-9]+$")
+  key = e.keyCode
+  key2 = String.fromCharCode(e.keyCode)
+  //only allows alphanumeric input
+  if ((regex.test(key2) == false)||(key ==32)){
+    e.preventDefault()
+  }
+  //enter on local edit form 
+  if (e.keyCode == 13){ 
+    local = this
+    external = this.parentElement.parentElement.children[1].children[0]
+    id = this.parentElement.parentElement.children[2].getAttribute('data-id')
+    external.value = checkforhttp(external.value)
+    saveEdit(id,local.value,external.value)
+
+    // external.focus()
+    row = this.parentElement.parentElement.children[4]
+    puleSaved(row)
+  }
+});
+
+
+//keypress for destination edit form
+$('.saved .destination').keypress(function(e) {
+  if (e.keyCode == 13){
+    external = this
+    local = this.parentElement.parentElement.children[0].children[0]
+    id = this.parentElement.parentElement.children[2].getAttribute('data-id')
+    external.value = checkforhttp(external.value)
+    saveEdit(id,local.value,external.value)
+    
+    // local.focus()
+    row = this.parentElement.parentElement.children[4]
+    puleSaved(row)
+  }
+});
+
+
+//keypress for add new route 
+$('.main-input input').keypress(function(e) {
+  if (e.keyCode == 13){
+    pulseLogo();
+    e.preventDefault()
+    newlocal = this.parentElement.parentElement.children[1].children[0]
+    newexternal = this.parentElement.parentElement.children[2].children[0]
+    if ((newlocal.value != "")&&(newexternal.value != "")){
+      newexternal.value = checkforhttp(newexternal.value)
+      $('#makenew').submit()  
+    } 
+  }
+})
+
+function puleSaved(saved){
+  $(saved).css('display','block')
+    setTimeout(function(){ 
+    $(saved).transition({
+      scale: .1, opacity: 0, duration: 300
+    }, function(){
+      $(saved).transition({
+      scale: 1, opacity: 1, duration: 300,display: "none"
+      })
+    })
+  }, 500);
+}
+ 
+function saveEdit(id,local,external){
+  data = {local: local, external: external}
+    $.ajax({  
+    url: '/links/edit/'+id,
+    type: 'POST',
+    data: data
+  })
+}
+
+function checkforhttp(string){
+  regex = new RegExp("^(http|https):\/\/")
+  if (regex.test(string)==false){
+    string = "http://"+string 
+  }
+  return string;
+}
+
+function pulseLogo() {
+  $('.pulse').transition({
+    scale: 6, opacity: 0, duration: 800
+  }, function(){
+      $(this).css({'transform':'', 'opacity':'1'});
+    });
+}
+
+
+</script>

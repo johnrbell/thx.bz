@@ -160,7 +160,6 @@ input[type=text] {
 
 .logo2 {
 	position: absolute;
-	
 	color: white;
 	padding: 0 auto;
 	width: 50%;
@@ -271,7 +270,7 @@ a
 .saved:hover {
 	background: #fff;
 	box-shadow: 0px 10px 10px rgba(10,51,97,.1);
-	z-index: 1;
+	z-index: 99;
 }
 
 .saved:hover:before {
@@ -286,8 +285,8 @@ a
 .saved .ellipsis {
 	width: 100%;
 	white-space: nowrap;
-  	overflow: hidden;
-  	text-overflow: ellipsis;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .saved .source {
@@ -346,8 +345,6 @@ a
 	background-image: url('/del.png');
 }
 
-
-
 .saved .url {
 	height: 70px;
 	font-size: 18px;
@@ -357,7 +354,6 @@ a
 .saved .source{
 	width: 520px;
 	padding-left: 20;
-
 	font-size: 18px;
 	font-family: 'Code Pro W01 Lowercase', Helvetica, Arial, sans-serif;
 	background: no-repeat center center;
@@ -372,7 +368,7 @@ a
 	background: no-repeat center center;
 }
 
-.savedmsgouter {
+.savedmsg{
 	display: none;
 	position: absolute;
   width: 1040px;
@@ -380,10 +376,18 @@ a
   text-align: center;
   background-color: white;
 }
-.savedmsginner{
+.savedmsgtext{
   display: table;
   margin: 0 auto;
   padding-top: 25px;
   font-size: 2em;
 	font-family: 'Code Pro W01 Lowercase', Helvetica, Arial, sans-serif;
 }
+
+
+
+
+
+
+
+
