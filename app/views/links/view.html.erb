@@ -1,9 +1,11 @@
 <%= stylesheet_link_tag "links", :media => "all" %>
 
 <link type="text/css" rel="stylesheet" href="http://fast.fonts.net/cssapi/2c2128be-1d65-4d98-989c-55fc575e7963.css"/>
+
 <body id="dashboard">
 	<div class="header">
-		<div class="logo"></div><div class="userwidget"><%= session[:user_name] %>.</div>
+		<div class="logo"></div>
+		<!-- <div class="userwidget"><%= session[:user_name] %>.</div> -->
 		<div class="pulse"></div>
 		<div class="row">
 		<form method='POST' id='makenew' action='/links/create'>
@@ -24,21 +26,26 @@
 			<form method='POST' id='editform' action='/links/edit/<%= link.id %>'>
 				<input name='authenticity_token' value='<%= form_authenticity_token() %>' type='hidden'>
 					<ul class="saved" data-id="<%= link.id %>">
-								<li><input type="text" name="local" class="url source" value="<%= link.local %>"></input></li>
-								<li><input type="text" name="external" class="url destination" value="<%= link.external %>"></input></li>
-								<li class="del"><div class="btn"></div></li>
-								<li class="arrow"><div class="btn"></div></li>
-								<li class="savedmsg"><div class="savedmsgtext">Updated!</div></li>
+						<li><input type="text" name="local" class="url source" value="<%= link.local %>"></input></li>
+						<li><input type="text" name="external" class="url destination" value="<%= link.external %>"></input></li>
+						<li class="del"><div class="btn"></div></li>
+						<li class="arrow"><div class="btn"></div></li>
+						<li class="savedmsg"><div class="savedmsgtext">Updated!</div></li>
 					</ul>
 			</form>
 		<% end %>	
 
 		</ul>
 	</div>
-	<br>
-	<br>
+	<div class="footer">
+		Your links are accessable at URLs like so: <%= session[:user_name] %>.thx.bz/example
+		<br>
+		<a href='/sessions/destroy' id='logout' type='submit'>Log Out</a>
+	</footer>
+	
 </body>
 </html>
+
 <%= javascript_include_tag "thx" %>
 
 
