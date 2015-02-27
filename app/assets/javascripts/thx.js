@@ -1,15 +1,26 @@
 $('.url').attr("autocomplete", "off");
-
+var selected = false
 $('.saved .source,.saved .destination').on("focus", function(e){
 	row = this.parentElement.parentElement
 	$(row).addClass('hoveredon')
+	selected = true
 })
 
 $('.saved .source,.saved .destination').on("focusout", function(e){
 	row = this.parentElement.parentElement
 	$(row).removeClass('hoveredon')
+	selected = false
 })
-
+$('.saved').on("mouseover", function(e){
+	if (selected == false){
+	$(this).addClass('hoveredon')
+	}
+})
+$('.saved').on("mouseout", function(e){
+	if (selected == false){
+	$(this).removeClass('hoveredon')
+	}
+})
 
 
 
@@ -38,6 +49,7 @@ $(".del").on("click", function(e){
 	}, function(){
 	  rowtokill.remove()
   });
+  selected = false
 })
 
 
@@ -71,7 +83,6 @@ $('.saved .source').keypress(function(e) {
 	 	row = this.parentElement.parentElement.children[4]
 	 	pulseSaved(row)
   }
-
 });
 $('.saved .destination').keydown(function(e) {
   if (e.keyCode == 13){ //enter key
@@ -112,10 +123,11 @@ $('.main-input .source').keypress(function(e) {
 	regex = new RegExp("^[a-zA-Z0-9]+$")
 	key = e.keyCode
 	key2 = String.fromCharCode(e.keyCode)
-	if ((regex.test(key2) == false)||(key ==32)){
+	//only allows alphanumeric input
+	if ((regex.test(key2) == false)||(key ==32)){  
 		e.preventDefault()
 	}
-  if (e.keyCode == 13){
+  if (e.keyCode == 13){ //enter key
 		pulseLogo();
 		e.preventDefault()
 		newlocal = this.parentElement.parentElement.children[1].children[0]
