@@ -91,16 +91,6 @@ $('.saved .destination').keydown(function(e) {
 });
 
 
-//UP AND DOWN ARROWS TO MOVE THROUGH INPUTS
-$('.saved input').keydown(function(e) {
-  if (e.keyCode == 40){ //down
-		next = $(":input").filter(":gt("+$(':input').index(this)+")").not(".auth").first().focus()
-  }
-  if (e.keyCode == 38){ //up
-		$(":input").filter(":lt("+$(':input').index(this)+")").not(".auth").last().focus()
-  }
-})
-
 //ADD FORM KEYPRESSES
 $('.main-input .destination').keydown(function(e) {
   if (e.keyCode == 13){ //enter key
@@ -113,10 +103,10 @@ $('.main-input .destination').keydown(function(e) {
 			$('#makenew').submit()	
 		}	
   }
-  if (e.keyCode == 9){ //tab key
-  	e.preventDefault()
-  	this.parentElement.parentElement.children[1].children[0].focus()
-  }
+  // if (e.keyCode == 9){ //tab key
+  // 	e.preventDefault()
+  // 	this.parentElement.parentElement.children[1].children[0].focus()
+  // }
 })
 $('.main-input .source').keypress(function(e) {
 	regex = new RegExp("^[a-zA-Z0-9]+$")
@@ -134,6 +124,17 @@ $('.main-input .source').keypress(function(e) {
 			newexternal.value = checkforhttp(newexternal.value)
 			$('#makenew').submit()	
 		}	
+  }
+})
+
+
+//UP AND DOWN ARROWS TO MOVE THROUGH INPUTS
+$('.saved input').keydown(function(e) {
+  if (e.keyCode == 40){ //down
+		next = $(":input").filter(":gt("+$(':input').index(this)+")").not(".auth").first().focus()
+  }
+  if (e.keyCode == 38){ //up
+		$(":input").filter(":lt("+$(':input').index(this)+")").not(".auth").last().focus()
   }
 })
 
