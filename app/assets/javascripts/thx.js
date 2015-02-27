@@ -6,10 +6,7 @@ $('.saved .source,.saved .destination').on("focus", function(e){
 	$(row).addClass('hoveredon')
 	$(this).css({'font-style':'italic'})
 	fontsize = $(this).css("font-size") 
-	fontsize = fontsize.replace('px','')
-	fontsize = parseInt(fontsize)
-	fontsize += 5
-	fontsize = fontsize+"px"
+	fontsize = fontresize(7,fontsize)
 	$(this).css({'font-size':fontsize})
 	selected = true
 })
@@ -19,14 +16,18 @@ $('.saved .source,.saved .destination').on("focusout", function(e){
 	$(row).removeClass('hoveredon')
 	$(this).css({'font-style':'normal'})
 	fontsize = $(this).css("font-size") 
-	fontsize = fontsize.replace('px','')
-	fontsize = parseInt(fontsize)
-	fontsize -= 5
-	fontsize = fontsize+"px"
+	fontsize = fontresize(-7,fontsize)
 	$(this).css({'font-size':fontsize})
 	selected = false
 })
 
+function fontresize(value,fontsize) {
+	fontsize = fontsize.replace('px','')
+	fontsize = parseInt(fontsize)
+	fontsize = fontsize + value
+	fontsize = fontsize+"px"
+	return fontsize
+}
 
 $('.saved').on("mouseover", function(e){
 	if (selected == false){
