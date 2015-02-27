@@ -1,3 +1,24 @@
+$('.saved .source').on("focus", function(e){
+	row = this.parentElement.parentElement
+	$(row).addClass('hoveredon')
+})
+
+$('.saved .source').on("focusout", function(e){
+	row = this.parentElement.parentElement
+	$(row).removeClass('hoveredon')
+})
+
+$('.saved .destination').on("focus", function(e){
+	row = this.parentElement.parentElement
+	$(row).addClass('hoveredon')
+})
+
+$('.saved .destination').on("focusout", function(e){
+	row = this.parentElement.parentElement
+	$(row).removeClass('hoveredon')
+})
+
+
 //ADD BUTTON 
 $(".add").on("click", function(e){
 	pulseLogo();
@@ -56,9 +77,10 @@ $('.saved .source').keypress(function(e) {
 	 	row = this.parentElement.parentElement.children[4]
 	 	pulseSaved(row)
   }
+
 });
 $('.saved .destination').keydown(function(e) {
-  if (e.keyCode == 13){
+  if (e.keyCode == 13){ //enter key
   	pulseLogo();
 	 	external = this
 	 	local = this.parentElement.parentElement.children[0].children[0]
@@ -68,16 +90,26 @@ $('.saved .destination').keydown(function(e) {
 	 	row = this.parentElement.parentElement.children[4]
 	 	pulseSaved(row)
   }
-  if (e.keyCode == 9){
-  	e.preventDefault()
-  	this.parentElement.parentElement.children[0].children[0].focus()
-  }
+  // if (e.keyCode == 9){ //tab key
+  // 	e.preventDefault()
+  // 	this.parentElement.parentElement.children[0].children[0].focus()
+  // }
 });
 
 
+//UP AND DOWN ARROWS TO MOVE THROUGH INPUTS
+$('.saved input').keydown(function(e) {
+  if (e.keyCode == 40){ //down
+		next = $(":input").filter(":gt("+$(':input').index(this)+")").not(".auth").first().focus()
+  }
+  if (e.keyCode == 38){ //up
+		$(":input").filter(":lt("+$(':input').index(this)+")").not(".auth").last().focus()
+  }
+})
+
 //ADD FORM KEYPRESSES
 $('.main-input .destination').keydown(function(e) {
-  if (e.keyCode == 13){
+  if (e.keyCode == 13){ //enter key
 		pulseLogo();
 		e.preventDefault()
 		newlocal = this.parentElement.parentElement.children[1].children[0]
@@ -87,7 +119,7 @@ $('.main-input .destination').keydown(function(e) {
 			$('#makenew').submit()	
 		}	
   }
-  if (e.keyCode == 9){
+  if (e.keyCode == 9){ //tab key
   	e.preventDefault()
   	this.parentElement.parentElement.children[1].children[0].focus()
   }

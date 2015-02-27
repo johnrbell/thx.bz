@@ -24,7 +24,7 @@
 
 		<% links.each do |link| %>
 			<form method='POST' id='editform' action='/links/edit/<%= link.id %>'>
-				<input name='authenticity_token' value='<%= form_authenticity_token() %>' type='hidden'>
+				<input class="auth" name='authenticity_token' value='<%= form_authenticity_token() %>' type='hidden'>
 					<ul class="saved" data-id="<%= link.id %>">
 						<li><input type="text" name="local" class="url source" value="<%= link.local %>"></input></li>
 						<li><input type="text" name="external" class="url destination" value="<%= link.external %>"></input></li>
