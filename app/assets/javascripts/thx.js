@@ -1,22 +1,16 @@
-$('.saved .source').on("focus", function(e){
+$('.url').attr("autocomplete", "off");
+
+$('.saved .source,.saved .destination').on("focus", function(e){
 	row = this.parentElement.parentElement
 	$(row).addClass('hoveredon')
 })
 
-$('.saved .source').on("focusout", function(e){
+$('.saved .source,.saved .destination').on("focusout", function(e){
 	row = this.parentElement.parentElement
 	$(row).removeClass('hoveredon')
 })
 
-$('.saved .destination').on("focus", function(e){
-	row = this.parentElement.parentElement
-	$(row).addClass('hoveredon')
-})
 
-$('.saved .destination').on("focusout", function(e){
-	row = this.parentElement.parentElement
-	$(row).removeClass('hoveredon')
-})
 
 
 //ADD BUTTON 
