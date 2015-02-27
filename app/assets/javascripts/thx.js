@@ -1,16 +1,33 @@
 $('.url').attr("autocomplete", "off");
 var selected = false
+
 $('.saved .source,.saved .destination').on("focus", function(e){
 	row = this.parentElement.parentElement
 	$(row).addClass('hoveredon')
+	$(this).css({'font-style':'italic'})
+	fontsize = $(this).css("font-size") 
+	fontsize = fontsize.replace('px','')
+	fontsize = parseInt(fontsize)
+	fontsize += 5
+	fontsize = fontsize+"px"
+	$(this).css({'font-size':fontsize})
 	selected = true
 })
 
 $('.saved .source,.saved .destination').on("focusout", function(e){
 	row = this.parentElement.parentElement
 	$(row).removeClass('hoveredon')
+	$(this).css({'font-style':'normal'})
+	fontsize = $(this).css("font-size") 
+	fontsize = fontsize.replace('px','')
+	fontsize = parseInt(fontsize)
+	fontsize -= 5
+	fontsize = fontsize+"px"
+	$(this).css({'font-size':fontsize})
 	selected = false
 })
+
+
 $('.saved').on("mouseover", function(e){
 	if (selected == false){
 	$(this).addClass('hoveredon')
@@ -21,7 +38,6 @@ $('.saved').on("mouseout", function(e){
 	$(this).removeClass('hoveredon')
 	}
 })
-
 
 
 //ADD BUTTON 

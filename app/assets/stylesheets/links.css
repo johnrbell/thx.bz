@@ -1,7 +1,6 @@
-*{
-	cursor: default;
+input{
+	cursor: pointer;
 }
-
 
 @charset "utf-8";
 
@@ -234,7 +233,7 @@ input[type=text] {
 	width: 70px;
 	height: 70px;
 	background: url('/add.png') no-repeat center center #95208d;
-	/*cursor: pointer;*/
+	cursor: pointer;
 }
 
 .saved-list {
@@ -249,7 +248,7 @@ input[type=text] {
 	width: 1040px;
 	background: #e1ecf9;
 	margin-bottom: 1px;
-	/*cursor: pointer;*/
+	cursor: pointer;
 	position: relative;
 	box-shadow: 0;
 	-webkit-transition: all .1s ease-in-out;
@@ -311,7 +310,7 @@ input[type=text] {
 	width: 50px;
 	height: 70px;
 	opacity: 0.2;
-	/*cursor: pointer;*/
+	cursor: pointer;
 	background: no-repeat center center;
 	-webkit-transition: opacity .1s ease-in-out;
 	-moz-transition: opacity .1s ease-in-out;
