@@ -161,27 +161,6 @@ input[type=text] {
 	z-index: 1;
 }
 
-/*.userwidget {
-	position: absolute;
-	color: white;
-	padding: 0 auto;
-	width: 50%;
-	height: 60px;
-	left: 0;
-	text-align: right;
-	font-family: "Impact";
-	letter-spacing: 4px;
-	font-weight: bold;
-	text-transform: uppercase;
-	-webkit-font-smoothing: antialiased;
-	font-size: 2.5em;
-	padding-top: 20px;
-	margin-left: -118px;
-	margin-top: 120px;
-	z-index: 2;
-	cursor: default;
-}*/
-
 .pulse {
 	width: 40px;
 	height: 40px;
@@ -278,6 +257,7 @@ input[type=text] {
 
 .saved .source {
 	width: 520px;
+	/*width: 200px;*/
 	padding: 0px 30px;
 	line-height: 70px;
 	font-size: 18px;
@@ -287,6 +267,7 @@ input[type=text] {
 
 .saved .destination {
 	width: 420px;
+	/*width: 200px;*/
 	padding: 0px 20px 0px 30px;
 	line-height: 70px;
 	font-size: 13px;
@@ -332,8 +313,9 @@ input[type=text] {
 }
 
 .saved .del .btn {
-	background-image: url('/del.png');
+	background-image: url('/trash.png');
 }
+
 
 .saved .url {
 	height: 70px;
@@ -353,7 +335,7 @@ input[type=text] {
   margin: 0 auto;
   padding-top: 26px;
   color: #95208d;
-  font-size: 2em;
+  font-size: 3em;
 	font-family: 'Code Pro W01 Lowercase', Helvetica, Arial, sans-serif;
 }
 
@@ -422,20 +404,60 @@ input[type=text] {
 }
 .flip .card .back {
   -webkit-transform: rotatex(-180deg) scale(1.01,1.14);
-  background: #fff;
   color: #95208d;
   cursor: pointer;
 }
-.back .counter{
-	width: 940px;
+
+
+
+
+
+
+
+
+.front .p1url{
+	width: 520px;
 	height: 100%;
 	margin: 0 auto;
-	background-color: #fff;
+	/*background-color: #fff;*/
 	padding: 0px 20px 0px 30px;
 	line-height: 70px;
 	display: inline-block;
 	font-size: 18px;
+	color: #b4bcce;
 }
+.front .p2url{
+	color: #95208d;
+}
+.front .p3url{
+	width: 420px;
+	height: 100%;
+	margin: 0 auto;
+	/*background-color: #fff;*/
+	padding: 0px 20px 0px 30px;
+	line-height: 70px;
+	display: inline-block;
+	font-size: 13px;
+	color: #b4bcce;
+}
+
 .back .menu, .back .del{
 	background-color: #fff
+}
+.back .saved{
+	background-color: #fff
+}
+
+.back .helper{
+	position: absolute;
+	width: 500px;
+	/*background-color: red;*/
+	font-size: 13px;
+	padding-top: 5px;
+	padding-left: 5px;
+	color: #b4bcce;
+	/*height: 20px;*/
+}
+.back input{
+	/*border: 1px solid red;*/
 }

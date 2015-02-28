@@ -1,56 +1,57 @@
-$('.menu').on("click", function(e){
-	$('.card').removeClass('flipped')
-	$(this).parent().parent().parent().parent().toggleClass('flipped')
-	selected = true
-})
-
-$('.back').on("mouseleave", function(e){
-	$('.card').removeClass('flipped')
-	$('.saved').removeClass('hoveredon')
-	selected = false
-})
-
-
-
 $('.url').attr("autocomplete", "off");
 var selected = false
 
-$('.saved .source,.saved .destination').on("focus", function(e){
-	row = this.parentElement.parentElement
-	$(row).addClass('hoveredon')
 
-	$(this).css({'font-style':'italic'})
-	
-	fontsize = $(this).css("font-size") 
-	fontsize = fontresize(7,fontsize)
-	$(this).css({'font-size':fontsize})
+
+
+$('.front .menu').on("click", function(e){
+	$('.card').removeClass('flipped')
+	$('.saved').removeClass('hoveredon')
+	$(this).parent().addClass('hoveredon')
+	$(this).parent().parent().parent().toggleClass('flipped')
 	selected = true
 })
 
-$('.saved .source,.saved .destination').on("focusout", function(e){
-	row = this.parentElement.parentElement
-	$('.saved').removeClass('hoveredon')
-
-	$(this).css({'font-style':'normal'})
-	
-	fontsize = $(this).css("font-size") 
-	fontsize = fontresize(-7,fontsize)
-	$(this).css({'font-size':fontsize})
+$('.back .menu').on("click",function(e){
+	$('.card').removeClass('flipped')
 	selected = false
 })
 
 
-$('.saved').on("mouseover", function(e){
-	if (selected == false){
-	$(this).addClass('hoveredon')
-	}
-})
-$('.saved').on("mouseout", function(e){
-	if (selected == false){
-	$(this).removeClass('hoveredon')
-	}
+
+
+$('.back .source,.back .destination').on("focus", function(e){
+	$(this).css({'font-style':'italic'})
+	// fontsize = fontresize(7,$(this).css("font-size") )
+	// $(this).css({'font-size':fontsize})
+	selected = true
 })
 
+$('.card,.back .source,.back .destination').on("focusout", function(e){
+	$(this).css({'font-style':'normal'})
+	// fontsize = fontresize(-7,$(this).css("font-size") )
+	// $(this).css({'font-size':fontsize})
+	// selected = false
+})
+
+
+
+
+
+
+
+
+//HOVER ON ROWS IF NOTHING IS FLIPPED CURRENTLY 
+$('.front').on("mouseover", function(e){
+	if (selected == false){
+		$(this).children().addClass('hoveredon')
+	}
+})
+$('.front').on("mouseout", function(e){
+	if (selected == false){
+	$(this).children().removeClass('hoveredon')
+	}
+})
 
 //ADD BUTTON 
 $(".add").on("click", function(e){
@@ -63,15 +64,15 @@ $(".add").on("click", function(e){
 	}	
 })
 
-
 //DELETE BUTTON
 $(".del").on("click", function(e){
+	e.preventDefault();
 	idtokill = this.parentElement.getAttribute('data-id')
 	$.ajax({	
 		url: '/links/kill/'+idtokill,
 		type: 'POST',
 	})
-	rowtokill = $(this).parent().parent().parent().parent()
+	rowtokill = $(this).parent().parent().parent().parent().parent()
 	$(rowtokill).transition({
 		scale: .1, opacity: 0, duration: 300
 	}, function(){
@@ -80,104 +81,85 @@ $(".del").on("click", function(e){
   selected = false
 })
 
-
 //GO BUTTON 
 $(".arrow").on("click", function(e){
-	e.preventDefault()
-	local = this.parentElement.children[0].children[0].value
-	url = "http://<%= session[:user_name] %>.thx.bz/"+local
-	console.log('requested: '+url)
-	window.open(url, '_blank')
+	if (selected == false){
+		url = $(this).attr('data-loc') 
+		console.log('requested: '+url)
+		window.open(url, '_blank')
+	}
 })
 
 
-//EDIT FORM FORM KEYPRESSES
-$('.saved .source').keypress(function(e) {
+// ================================================================
+// 	KEY PRESSES
+// ================================================================
+
+//only allows alphanumeric input for LOCAL
+$('.source').keypress(function(e) {
 	regex = new RegExp("^[a-zA-Z0-9]+$")
 	key = e.keyCode
 	key2 = String.fromCharCode(e.keyCode)
-	//only allows alphanumeric input
 	if ((regex.test(key2) == false)||(key ==32)){
 		e.preventDefault()
 	}
-	//enter on local edit form 
-  if (e.keyCode == 13){
-	  pulseLogo();	
-	 	local = this
-	 	external = this.parentElement.parentElement.children[1].children[0]
-	 	id = this.parentElement.parentElement.getAttribute('data-id')
-	 	external.value = checkforhttp(external.value)
-	 	saveEdit(id,local.value,external.value)
-	 	row = this.parentElement.parentElement.children[4]
-	 	pulseSaved(row)
-  }
 });
-$('.saved .destination').keydown(function(e) {
+
+//ADD NEW
+$('.main-input input').keydown(function(e) {
+	if (e.keyCode == 13){ //enter key
+		e.preventDefault()
+		pulseLogo();
+		newlocal = this.parentElement.parentElement.children[1].children[0]
+		newexternal = this.parentElement.parentElement.children[2].children[0]
+		if ((newlocal.value != "")&&(newexternal.value != "")){
+			newexternal.value = checkforhttp(newexternal.value)
+			$('#makenew').submit()	
+		}	
+  }
+})
+
+//EDIT 
+$('.saved input').keydown(function(e) {
   if (e.keyCode == 13){ //enter key
+	  console.log('saved edit')
   	pulseLogo();
-	 	external = this
-	 	local = this.parentElement.parentElement.children[0].children[0]
+
+  	saved = $(this).parent().parent()
+  	local = $(saved.children()[1].children)[0]
+  	external = $(saved.children()[2].children)[0]
 	 	id = this.parentElement.parentElement.getAttribute('data-id')
 	 	external.value = checkforhttp(external.value)
+
 	 	saveEdit(id,local.value,external.value)
-	 	row = this.parentElement.parentElement.children[4]
+	 	row = $(this).parent().parent().children().last()
+
+		frontside = $(this).parent().parent().parent().parent().parent().children()[0]
+	 	$(frontside).children().children()[0].children[0].children[0].innerText = local.value
+		$(frontside).children().children()[1].children[0].innerText = external.value
+		$('.card').removeClass('flipped')
+		$('.saved').removeClass('hoveredon')
+		selected = false
 	 	pulseSaved(row)
   }
-  // if (e.keyCode == 9){ //tab key
-  // 	e.preventDefault()
-  // 	this.parentElement.parentElement.children[0].children[0].focus()
-  // }
 });
 
 
-//ADD FORM KEYPRESSES
-$('.main-input .destination').keydown(function(e) {
-  if (e.keyCode == 13){ //enter key
-		pulseLogo();
-		e.preventDefault()
-		newlocal = this.parentElement.parentElement.children[1].children[0]
-		newexternal = this.parentElement.parentElement.children[2].children[0]
-		if ((newlocal.value != "")&&(newexternal.value != "")){
-			newexternal.value = checkforhttp(newexternal.value)
-			$('#makenew').submit()	
-		}	
-  }
-  // if (e.keyCode == 9){ //tab key
-  // 	e.preventDefault()
-  // 	this.parentElement.parentElement.children[1].children[0].focus()
-  // }
-})
-$('.main-input .source').keypress(function(e) {
-	regex = new RegExp("^[a-zA-Z0-9]+$")
-	key = e.keyCode
-	key2 = String.fromCharCode(e.keyCode)
-	//only allows alphanumeric input
-	if ((regex.test(key2) == false)||(key ==32)){  
-		e.preventDefault()
-	}
-  if (e.keyCode == 13){ //enter key
-		pulseLogo();
-		e.preventDefault()
-		newlocal = this.parentElement.parentElement.children[1].children[0]
-		newexternal = this.parentElement.parentElement.children[2].children[0]
-		if ((newlocal.value != "")&&(newexternal.value != "")){
-			newexternal.value = checkforhttp(newexternal.value)
-			$('#makenew').submit()	
-		}	
-  }
-})
 
 
 //UP AND DOWN ARROWS TO MOVE THROUGH INPUTS
-$('.saved input').keydown(function(e) {
-  if (e.keyCode == 40){ //down
-		next = $(":input").filter(":gt("+$(':input').index(this)+")").not(".auth").first().focus()
-  }
-  if (e.keyCode == 38){ //up
-		$(":input").filter(":lt("+$(':input').index(this)+")").not(".auth").last().focus()
-  }
-})
+// $('.saved input').keydown(function(e) {
+//   if (e.keyCode == 40){ //down
+// 		next = $(":input").filter(":gt("+$(':input').index(this)+")").not(".auth").first().focus()
+//   }
+//   if (e.keyCode == 38){ //up
+// 		$(":input").filter(":lt("+$(':input').index(this)+")").not(".auth").last().focus()
+//   }
+// })
 
+// ================================================================
+// 	FUNCTIONS
+// ================================================================
 
 function pulseSaved(saved){
  	$(saved).css('display','block')
