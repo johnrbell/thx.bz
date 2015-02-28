@@ -19,24 +19,41 @@
 		</form>
 		</div>
 	</div>
+
 	<div class="row">
 		<ul class="saved-list">
 
 		<% links.each do |link| %>
+		<div id="js-flip-1" class="flip">
+		<div class="card">
+			<div class="face front">
 			<form method='POST' id='editform' action='/links/edit/<%= link.id %>'>
 				<input class="auth" name='authenticity_token' value='<%= form_authenticity_token() %>' type='hidden'>
 					<ul class="saved" data-id="<%= link.id %>">
 						<li><input type="text" name="local" class="url source" value="<%= link.local %>"></input></li>
 						<li><input type="text" name="external" class="url destination" value="<%= link.external %>"></input></li>
-						<li class="del"><div class="btn"></div></li>
+						<li class="menu"><div class="btn"></div></li>
 						<li class="arrow"><div class="btn"></div></li>
 						<li class="savedmsg"><div class="savedmsgtext">Updated!</div></li>
 					</ul>
 			</form>
+			</div>
+			<div class="face back">
+				
+					<ul class="saved" data-id="<%= link.id %>">
+						<li><span class="counter"><%= session[:user_name] %>.thx.bz/<%= link.local %> - Hit <%= link.counter %> times</span></li>
+						<li class="menu"><div class="btn"></div></li>
+						<li class="del"><div class="btn"></div></li>
+					</ul>
+
+			</div>
+		</div>
+		</div>
 		<% end %>	
 
 		</ul>
 	</div>
+
 	<br>
 	<div class="footer">
 		Your links are accessable at URLs like so: 
@@ -45,9 +62,8 @@
 		<br>
 		<a href='/sessions/destroy' id='logout' type='submit'>Log Out</a>
 	</div>
-	
 </body>
-</html>
+
 
 <%= javascript_include_tag "thx" %>
 
