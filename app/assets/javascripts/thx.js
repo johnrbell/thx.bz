@@ -39,8 +39,6 @@ $(".front .arrow").on("click", function(e){
 		url = $(this).attr('data-loc')
 		domain = document.location.host.replace('www.','') 
 		url = url.replace('!!HOST!!',domain)
-
-		console.log('requested: '+url)
 		window.open(url, '_blank')
 	}
 })
