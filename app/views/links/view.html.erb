@@ -3,8 +3,10 @@
 <link type="text/css" rel="stylesheet" href="http://fast.fonts.net/cssapi/2c2128be-1d65-4d98-989c-55fc575e7963.css"/>
 
 <body id="dashboard">
+
 	<div class="header">
-		<div class="logo"></div>
+		<div class="bg"><img src="/header.png"></div>
+		<div class="logo"><img src="/logo.png"></div>
 		<div class="pulse"></div>
 		<div class="row">
 		<form method='POST' id='makenew' action='/links/create'>
@@ -22,48 +24,50 @@
 	<div class="row">
 		<ul class="saved-list">
 
-		<% links.each do |link| %>
-		<div id="js-flip-1" class="flip">
-		<div class="card">
+			<% links.each do |link| %>
+			<div id="js-flip-1" class="flip">
+				<div class="card">
 
-			<div class="face front">
-				<ul class="saved" data-id="<%= link.id %>">
-					<li>
-						<span class="p1url"><%= session[:user_name] %>.thx.bz /
-						<span class="p2url"> <%= link.local %></span></span>
-					</li>
-					<li><span class="p3url"><%= link.external %></span></li>
-					<li class="menu"><div class="btn"></div></li>
-					<li class="arrow" data-loc="http://<%= session[:user_name] %>.thx.bz/<%= link.local %>"><div class="btn"></div></li>
-				</ul>
-			</div>
+					<div class="face front">
+						<ul class="saved" data-id="<%= link.id %>">
+							<li>
+								<span class="p1url"><%= session[:user_name] %>.thx.bz /
+								<span class="p2url"> <%= link.local %></span></span>
+							</li>
+							<li><span class="p3url"><%= link.external %></span></li>
+							<li class="menu"><div class="btn"></div></li>
+							<li class="arrow" data-loc="http://<%= session[:user_name] %>.thx.bz/<%= link.local %>"><div class="btn"></div></li>
+						</ul>
+					</div>
 
-			<div class="face back">
-			<form method='POST' id='editform' action='/links/edit/<%= link.id %>'>
-				<input class="auth" name='authenticity_token' value='<%= form_authenticity_token() %>' type='hidden'>
-					<ul class="saved" data-id="<%= link.id %>">
-						<li>
-						<div class="helper">
-							<div class="one">Click to Edit Local Route:</div>	
-							<div class="two">Click to Edit External Route:</div>
-						</div>
-						</li>
-						<li><input type="text" name="local" class="url source" value="<%= link.local %>"></input></li>
-						<li><input type="text" name="external" class="url destination" value="<%= link.external %>"></input></li>
-						<li class="menu"><div class="btn"></div></li>
-						<li class="del"><div class="btn"></div></li>
-						<li class="savedmsg"><div class="savedmsgtext">Updated!</div></li>
-					</ul>
-			</form>
+					<div class="face back">
+						<form method='POST' id='editform' action='/links/edit/<%= link.id %>'>
+							<input class="auth" name='authenticity_token' value='<%= form_authenticity_token() %>' type='hidden'>
+								<ul class="saved" data-id="<%= link.id %>">
+									<li>
+										<div class="helper">
+											<div class="one">Click to Edit Local Route:</div>	
+											<div class="two">Click to Edit External Route:</div>
+										</div>
+									</li>
+									<li><input type="text" name="local" class="url source" value="<%= link.local %>"></input></li>
+									<li><input type="text" name="external" class="url destination" value="<%= link.external %>"></input></li>
+									<li class="menu"><div class="btn"></div></li>
+									<li class="del"><div class="btn"></div></li>
+									<li class="savedmsg"><div class="savedmsgtext">Updated!</div></li>
+								</ul>
+						</form>
+					</div>
+
+				</div>
 			</div>
-		</div>
-		</div>
-		<% end %>	
+			<% end %>	
 
 		</ul>
 	</div>
 
 	<br>
+
 	<div class="footer">
 		Your links are accessable at URLs like so: 
 		<%= session[:user_name] %>.thx.bz/<% if links[0] %><%= links[0].local %>
@@ -71,8 +75,8 @@
 		<br>
 		<a href='/sessions/destroy' id='logout' type='submit'>Log Out</a>
 	</div>
-</body>
 
+</body>
 
 <%= javascript_include_tag "thx" %>
 

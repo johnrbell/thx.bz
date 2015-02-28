@@ -1,9 +1,7 @@
 $('.url').attr("autocomplete", "off");
 var selected = false
 
-
-
-
+//WHEN YOU CLICK ON THE FRONT ... BUTTON
 $('.front .menu').on("click", function(e){
 	$('.card').removeClass('flipped')
 	$('.saved').removeClass('hoveredon')
@@ -12,6 +10,13 @@ $('.front .menu').on("click", function(e){
 	selected = true
 })
 
+//WHEN YOU CLICK ON THE REAR ... BUTTON
+$('.back .menu').on("click",function(e){
+	$('.card').removeClass('flipped')
+	selected = false
+})
+
+//WHEN YOU DOUBLE CLICK A ROW OF SAVED
 $( ".front" ).dblclick(function() {
 	$('.card').removeClass('flipped')
 	$('.saved').removeClass('hoveredon')
@@ -19,12 +24,11 @@ $( ".front" ).dblclick(function() {
 	selected = true
 });
 
-$('.back .menu').on("click",function(e){
+//WHEN YOU CLICK ONE OF THE NEW URL BOXES. 
+$('.main-input .url').on("click", function(e){
 	$('.card').removeClass('flipped')
 	selected = false
 })
-
-
 
 
 //WHEN YOU SELECT AN EDIT BOX ON THE BACK
@@ -136,10 +140,12 @@ $('.saved input').keydown(function(e) {
 		frontside = $(this).parent().parent().parent().parent().parent().children()[0]
 	 	$(frontside).children().children()[0].children[0].children[0].innerText = local.value
 		$(frontside).children().children()[1].children[0].innerText = external.value
-		$('.card').removeClass('flipped')
-		$('.saved').removeClass('hoveredon')
 		selected = false
 	 	pulseSaved(row)
+	 	setTimeout(function(){
+	 	$('.card').removeClass('flipped')
+		$('.saved').removeClass('hoveredon')	
+	 	},800)
   }
 });
 
@@ -161,13 +167,13 @@ function pulseSaved(saved){
  	$(saved).css('display','block')
 		setTimeout(function(){ 
 		$(saved).transition({
-			scale: .1, opacity: 0, duration: 300
+			scale: .1, opacity: 0, duration: 400
 		}, function(){
 		  $(saved).transition({
-			scale: 1, opacity: 1, duration: 300,display: "none"
+			scale: 1, opacity: 1, duration: 400,display: "none"
 			})
 	  })
- 	}, 500);
+ 	}, 800);
 }
  
 function saveEdit(id,local,external){
@@ -187,7 +193,7 @@ function checkforhttp(string){
 	return string;
 }
 
-function pulseLogo() {
+function pulseLogo(){
 	$('.pulse').transition({
 		scale: 6, opacity: 0, duration: 800
 	}, function(){
@@ -202,3 +208,7 @@ function fontresize(value,fontsize) {
 	fontsize = fontsize+"px"
 	return fontsize
 }
+
+$('body').imagesLoaded( function() {
+  pulseLogo();
+});
