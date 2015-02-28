@@ -110,7 +110,7 @@ $('.front').on("mouseout", function(e){
 
 //ONLY ALLOWS ALPHANUMERIC INPUT FOR LOCAL/SOURCE
 $('.source').keypress(function(e) {
-	regex = new RegExp("^[a-zA-Z0-9]+$")
+	regex = new RegExp("[a-zA-Z0-9|_|-]")
 	key = e.keyCode
 	key2 = String.fromCharCode(e.keyCode)
 	if ((regex.test(key2) == false)||(key ==32)){
