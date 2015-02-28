@@ -37,7 +37,7 @@ $('.back .menu').on("click",function(e){
 $(".front .arrow").on("click", function(e){
 	if (selected == false){
 		url = $(this).attr('data-loc')
-		domain = document.location.host.gsub('www.','') 
+		domain = document.location.host.replace('www.','') 
 		url = url.replace('!!HOST!!',domain)
 
 		console.log('requested: '+url)
