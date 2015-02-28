@@ -1,6 +1,6 @@
 class LinksController < ApplicationController
 	def view
-		if  (request.subdomain.downcase == '') 
+		if  (request.subdomain.downcase == '') ||  (request.subdomain.downcase == 'www') 
 			if (session[:user_id] != nil)
 				links = Link.where(user_id: session[:user_id])
 				links.order!('local ASC')

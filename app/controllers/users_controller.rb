@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
 	def index #landing page
-		if  (request.subdomain.downcase == '') 
+		if  (request.subdomain.downcase == '') ||  (request.subdomain.downcase == 'www')
 			if (session[:user_id] != nil)
 				redirect_to '/links'
 			else
