@@ -1,10 +1,18 @@
 class UsersController < ApplicationController
 
 	def index #landing page
-		if (session[:user_id] != nil)
-			redirect_to '/links'
+		if  (request.subdomain.downcase == '') 
+			if (session[:user_id] != nil)
+				redirect_to '/links'
+			else
+				render :index
+			end
 		else
-			render :index
+			url = 'http://'+request.domain+'/links'
+			if (request.port != 80)
+				url = 'http://'+request.domain+':'+request.port.to_s+'/links'
+			end
+			redirect_to (url)
 		end
 	end
 

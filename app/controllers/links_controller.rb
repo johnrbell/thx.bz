@@ -1,5 +1,6 @@
 class LinksController < ApplicationController
 	def view
+		if  (request.subdomain.downcase == '') 
 			if (session[:user_id] != nil)
 				links = Link.where(user_id: session[:user_id])
 				links.order!('local ASC')
@@ -7,6 +8,13 @@ class LinksController < ApplicationController
 			else
 				redirect_to '/'
 			end
+		else
+			url = 'http://'+request.domain+'/links'
+			if (request.port != 80)
+				url = 'http://'+request.domain+':'+request.port.to_s+'/links'
+			end
+			redirect_to (url)
+		end
 	end
 
 	def redirect
