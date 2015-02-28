@@ -9,6 +9,7 @@ var selected = false
 //WHEN YOU CLICK ONE OF THE NEW URL BOXES, UNFLIPS AN EDIT BOX BELOW
 $('.main-input .url').on("click", function(e){
 	$('.card').removeClass('flipped')
+	$('.saved').removeClass('hoveredon')
 	selected = false
 })
 
