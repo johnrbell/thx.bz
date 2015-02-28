@@ -1,10 +1,26 @@
+$('.menu').on("click", function(e){
+	$('.card').removeClass('flipped')
+	$(this).parent().parent().parent().parent().toggleClass('flipped')
+	selected = true
+})
+
+$('.back').on("mouseleave", function(e){
+	$('.card').removeClass('flipped')
+	$('.saved').removeClass('hoveredon')
+	selected = false
+})
+
+
+
 $('.url').attr("autocomplete", "off");
 var selected = false
 
 $('.saved .source,.saved .destination').on("focus", function(e){
 	row = this.parentElement.parentElement
 	$(row).addClass('hoveredon')
+
 	$(this).css({'font-style':'italic'})
+	
 	fontsize = $(this).css("font-size") 
 	fontsize = fontresize(7,fontsize)
 	$(this).css({'font-size':fontsize})
@@ -13,21 +29,16 @@ $('.saved .source,.saved .destination').on("focus", function(e){
 
 $('.saved .source,.saved .destination').on("focusout", function(e){
 	row = this.parentElement.parentElement
-	$(row).removeClass('hoveredon')
+	$('.saved').removeClass('hoveredon')
+
 	$(this).css({'font-style':'normal'})
+	
 	fontsize = $(this).css("font-size") 
 	fontsize = fontresize(-7,fontsize)
 	$(this).css({'font-size':fontsize})
 	selected = false
 })
 
-function fontresize(value,fontsize) {
-	fontsize = fontsize.replace('px','')
-	fontsize = parseInt(fontsize)
-	fontsize = fontsize + value
-	fontsize = fontsize+"px"
-	return fontsize
-}
 
 $('.saved').on("mouseover", function(e){
 	if (selected == false){
@@ -47,8 +58,8 @@ $(".add").on("click", function(e){
 	newlocal = this.parentElement.parentElement.children[1].children[0]
 	newexternal = this.parentElement.parentElement.children[2].children[0]
 	if ((newlocal.value != "")&&(newexternal.value != "")){
-		newexternal.value = checkforhttp(newexternal.value)
-		$('#makenew').submit()	
+	newexternal.value = checkforhttp(newexternal.value)
+	$('#makenew').submit()	
 	}	
 })
 
@@ -60,7 +71,7 @@ $(".del").on("click", function(e){
 		url: '/links/kill/'+idtokill,
 		type: 'POST',
 	})
-	rowtokill = this.parentElement.parentElement
+	rowtokill = $(this).parent().parent().parent().parent()
 	$(rowtokill).transition({
 		scale: .1, opacity: 0, duration: 300
 	}, function(){
@@ -203,5 +214,13 @@ function pulseLogo() {
 		scale: 6, opacity: 0, duration: 800
 	}, function(){
       $(this).css({'transform':'', 'opacity':'1'});
-    });
+  });
+}
+
+function fontresize(value,fontsize) {
+	fontsize = fontsize.replace('px','')
+	fontsize = parseInt(fontsize)
+	fontsize = fontsize + value
+	fontsize = fontsize+"px"
+	return fontsize
 }
