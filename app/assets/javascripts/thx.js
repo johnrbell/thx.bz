@@ -1,22 +1,66 @@
 $('.url').attr("autocomplete", "off");
 var selected = false
 
-//WHEN YOU CLICK ON THE FRONT ... BUTTON
+
+// =============================================================================
+// 	MOUSE CLICKS ON SPECIFIC BUTTONS
+// =============================================================================
+
+//WHEN YOU CLICK ONE OF THE NEW URL BOXES, UNFLIPS AN EDIT BOX BELOW
+$('.main-input .url').on("click", function(e){
+	$('.card').removeClass('flipped')
+	selected = false
+})
+
+//ADD BUTTON ON NEW, TRIES TO CREATE NEW 
+$(".main-input .add").on("click", function(e){
+		create_link();
+})
+
+//WHEN YOU CLICK ON THE FRONT ... BUTTON, FLIP TO EDIT
 $('.front .menu').on("click", function(e){
 	$('.card').removeClass('flipped')
 	$('.saved').removeClass('hoveredon')
 	$(this).parent().addClass('hoveredon')
-	$(this).parent().parent().parent().toggleClass('flipped')
+	$(this).parents('.card').toggleClass('flipped')
 	selected = true
 })
 
-//WHEN YOU CLICK ON THE REAR ... BUTTON
+//WHEN YOU CLICK ON THE REAR ... BUTTON, FLIP BACK TO FRONT
 $('.back .menu').on("click",function(e){
 	$('.card').removeClass('flipped')
 	selected = false
 })
 
-//WHEN YOU DOUBLE CLICK A ROW OF SAVED
+//GO BUTTON ON SAVED ROW, OPENS NEW WINDOW USING THX.BZ ROUTE
+$(".front .arrow").on("click", function(e){
+	if (selected == false){
+		url = $(this).attr('data-loc') 
+		console.log('requested: '+url)
+		window.open(url, '_blank')
+	}
+})
+
+//DELETE BUTTON ON SAVED ROW, DELETES RECORD, REMOVES ROW FROM DOM
+$(".back .del").on("click", function(e){
+	//deletes the record from db.
+	e.preventDefault();
+	idtokill = this.parentElement.getAttribute('data-id')
+	$.ajax({	
+		url: '/links/kill/'+idtokill,
+		type: 'POST',
+	})
+	//deletes the row from the dom.
+	rowtokill = $(this).parents('.flip')
+	$(rowtokill).transition({
+		scale: .1, opacity: 0, duration: 300
+	}, function(){
+	  rowtokill.remove()
+  });
+  selected = false
+})
+
+//WHEN YOU DOUBLE CLICK A ROW OF SAVED - FLIP TO EDIT SIDE
 $( ".front" ).dblclick(function() {
 	$('.card').removeClass('flipped')
 	$('.saved').removeClass('hoveredon')
@@ -24,25 +68,25 @@ $( ".front" ).dblclick(function() {
 	selected = true
 });
 
-//WHEN YOU CLICK ONE OF THE NEW URL BOXES. 
-$('.main-input .url').on("click", function(e){
-	$('.card').removeClass('flipped')
-	selected = false
-})
-
-
-//WHEN YOU SELECT AN EDIT BOX ON THE BACK
+//WHEN YOU SELECT AN EDIT BOX ON THE BACK, MAKE ITALIC
 $('.back .source,.back .destination').on("focus", function(e){
 	$(this).css({'font-style':'italic'})
 	// fontsize = fontresize(7,$(this).css("font-size") )
 	// $(this).css({'font-size':fontsize})
 	selected = true
 })
-$('.card,.back .source,.back .destination').on("focusout", function(e){
+//WHEN YOU UNSELECT AN EDIT BOX ON THE BACK, MAKE NORMAL
+$('.back .source,.back .destination').on("focusout", function(e){
 	$(this).css({'font-style':'normal'})
 	// fontsize = fontresize(-7,$(this).css("font-size") )
 	// $(this).css({'font-size':fontsize})
 })
+
+
+
+// =============================================================================
+// 	MOUSE HOVERS
+// =============================================================================
 
 //HOVER ON ROWS IF NOTHING IS FLIPPED CURRENTLY 
 $('.front').on("mouseover", function(e){
@@ -52,53 +96,17 @@ $('.front').on("mouseover", function(e){
 })
 $('.front').on("mouseout", function(e){
 	if (selected == false){
-	$(this).children().removeClass('hoveredon')
-	}
-})
-
-//ADD BUTTON 
-$(".add").on("click", function(e){
-	pulseLogo();
-	newlocal = this.parentElement.parentElement.children[1].children[0]
-	newexternal = this.parentElement.parentElement.children[2].children[0]
-	if ((newlocal.value != "")&&(newexternal.value != "")){
-	newexternal.value = checkforhttp(newexternal.value)
-	$('#makenew').submit()	
-	}	
-})
-
-//DELETE BUTTON
-$(".del").on("click", function(e){
-	e.preventDefault();
-	idtokill = this.parentElement.getAttribute('data-id')
-	$.ajax({	
-		url: '/links/kill/'+idtokill,
-		type: 'POST',
-	})
-	rowtokill = $(this).parent().parent().parent().parent().parent()
-	$(rowtokill).transition({
-		scale: .1, opacity: 0, duration: 300
-	}, function(){
-	  rowtokill.remove()
-  });
-  selected = false
-})
-
-//GO BUTTON 
-$(".arrow").on("click", function(e){
-	if (selected == false){
-		url = $(this).attr('data-loc') 
-		console.log('requested: '+url)
-		window.open(url, '_blank')
+		$(this).children().removeClass('hoveredon')
 	}
 })
 
 
-// ================================================================
+
+// =============================================================================
 // 	KEY PRESSES
-// ================================================================
+// =============================================================================
 
-//only allows alphanumeric input for LOCAL
+//ONLY ALLOWS ALPHANUMERIC INPUT FOR LOCAL/SOURCE
 $('.source').keypress(function(e) {
 	regex = new RegExp("^[a-zA-Z0-9]+$")
 	key = e.keyCode
@@ -108,74 +116,60 @@ $('.source').keypress(function(e) {
 	}
 });
 
-//ADD NEW
+//FOR EITHER NEW INPUT, ON ENTER KEY- SUBMIT FOR ADDING NEW ROUTE
 $('.main-input input').keydown(function(e) {
 	if (e.keyCode == 13){ //enter key
 		e.preventDefault()
-		pulseLogo();
-		newlocal = this.parentElement.parentElement.children[1].children[0]
-		newexternal = this.parentElement.parentElement.children[2].children[0]
-		if ((newlocal.value != "")&&(newexternal.value != "")){
-			newexternal.value = checkforhttp(newexternal.value)
-			$('#makenew').submit()	
-		}	
-  }
+		create_link();
+	}	
 })
 
-//EDIT 
+//IN EDIT INPUTS, ON ENTER KEY- SUBMIT THE EDIT, UPDATE FRONT, SHOW SAVED MSG, FLIP BACK.
 $('.saved input').keydown(function(e) {
   if (e.keyCode == 13){ //enter key
-	  console.log('saved edit')
   	pulseLogo();
-
-  	saved = $(this).parent().parent()
-  	local = $(saved.children()[1].children)[0]
-  	external = $(saved.children()[2].children)[0]
-	 	id = this.parentElement.parentElement.getAttribute('data-id')
-	 	external.value = checkforhttp(external.value)
-
-	 	saveEdit(id,local.value,external.value)
-	 	row = $(this).parent().parent().children().last()
-
-		frontside = $(this).parent().parent().parent().parent().parent().children()[0]
-	 	$(frontside).children().children()[0].children[0].children[0].innerText = local.value
-		$(frontside).children().children()[1].children[0].innerText = external.value
-		selected = false
+  	//gets all the data needed to save
+  	saved = $(this).parents('.saved')
+		id = saved.attr('data-id')
+		local	= $(this).parents('.saved').find('.source')
+  	external = $(this).parents('.saved').find('.destination')
+	 	external.val(checkforhttp(external.val()))
+		saveEdit(id,$(local).val(),$(external).val())
+		//updates the front to match the edits 
+	 	$(this).parents('.card').find('.p2url').text($(local).val())
+	 	$(this).parents('.card').find('.p3url').text($(external).val())
+	 	row = $(this).parents('.flip').find('.savedmsg')
 	 	pulseSaved(row)
+	 	//delay before flipping back, to show updated msg
 	 	setTimeout(function(){
+	 	selected = false
 	 	$('.card').removeClass('flipped')
 		$('.saved').removeClass('hoveredon')	
 	 	},800)
   }
 });
 
-//UP AND DOWN ARROWS TO MOVE THROUGH INPUTS
-// $('.saved input').keydown(function(e) {
-//   if (e.keyCode == 40){ //down
-// 		next = $(":input").filter(":gt("+$(':input').index(this)+")").not(".auth").first().focus()
-//   }
-//   if (e.keyCode == 38){ //up
-// 		$(":input").filter(":lt("+$(':input').index(this)+")").not(".auth").last().focus()
-//   }
-// })
 
-// ================================================================
+
+// =============================================================================
 // 	FUNCTIONS
-// ================================================================
+// =============================================================================
 
-function pulseSaved(saved){
- 	$(saved).css('display','block')
+//FLASHES THE SAVED/UPDATED MESSAGE ON A ROW
+function pulseSaved(row){
+ 	$(row).css('display','block')
 		setTimeout(function(){ 
-		$(saved).transition({
+		$(row).transition({
 			scale: .1, opacity: 0, duration: 400
 		}, function(){
-		  $(saved).transition({
+		  $(row).transition({
 			scale: 1, opacity: 1, duration: 400,display: "none"
 			})
 	  })
  	}, 800);
 }
  
+//MAKES AJAX CALL TO SAVE EDIT
 function saveEdit(id,local,external){
 	data = {local: local, external: external}
 		$.ajax({	
@@ -185,6 +179,7 @@ function saveEdit(id,local,external){
 	})
 }
 
+//TAKES A STRING, LOOKS FOR HTTP OR HTTPS, IF NOT, ADDS IT, RETURNS
 function checkforhttp(string){
 	regex = new RegExp("^(http|https):\/\/")
 	if (regex.test(string)==false){
@@ -193,14 +188,16 @@ function checkforhttp(string){
 	return string;
 }
 
+//PULSE ANIMATION FOR THE BLUE RING
 function pulseLogo(){
 	$('.pulse').transition({
 		scale: 6, opacity: 0, duration: 800
 	}, function(){
-      $(this).css({'transform':'', 'opacity':'1'});
+    $(this).css({'transform':'', 'opacity':'1'});
   });
 }
 
+//ENTER A FONT, GET A DIFFERENT SIZE BACK
 function fontresize(value,fontsize) {
 	fontsize = fontsize.replace('px','')
 	fontsize = parseInt(fontsize)
@@ -209,6 +206,17 @@ function fontresize(value,fontsize) {
 	return fontsize
 }
 
+//WHEN A NEW LINK IS SUBMITTED
+function create_link(){
+	newlocal = $('body').find('.main-input .source')
+	newexternal = $('body').find('.main-input .destination')
+	if ((newlocal.val() != "")&&(newexternal.val() != "")){
+		newexternal.val(checkforhttp(newexternal.val()))
+		$('#makenew').submit()	
+	}	
+}
+
+//FLASH RING WHEN ALL IMAGES LOAD AFTER A REFRESH
 $('body').imagesLoaded( function() {
   pulseLogo();
 });
