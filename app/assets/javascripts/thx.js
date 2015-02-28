@@ -37,8 +37,9 @@ $('.back .menu').on("click",function(e){
 $(".front .arrow").on("click", function(e){
 	if (selected == false){
 		url = $(this).attr('data-loc') 
+		url = url.replace('!!HOST!!',document.location.host)
 		console.log('requested: '+url)
-		window.open(url, '_blank')
+		// window.open(url, '_blank')
 	}
 })
 
