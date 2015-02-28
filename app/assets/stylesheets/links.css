@@ -270,8 +270,8 @@ input[type=text] {
 	/*width: 200px;*/
 	padding: 0px 20px 0px 30px;
 	line-height: 70px;
-	font-size: 13px;
-	color: #b4bcce;
+	font-size: 14px;
+	color: #95208d;
 	background: no-repeat center center;
 }
 
@@ -364,19 +364,19 @@ input[type=text] {
 .hoveredon{
 	z-index: 99;
 	background: #fff;
-	box-shadow: 0px 10px 10px rgba(10,51,97,.1);
 	transform: scale(1.01, 1.14);
 	-moz-transform: scale(1.01, 1.14);
 	-ms-transform: scale(1.01, 1.14);
 	-webkit-transform: scale(1.01, 1.14);
 	-o-transform: scale(1.01, 1.14);
+	box-shadow: 0px 5px 10px rgba(10,51,97,.1);
 }
 
 .flip {
   -webkit-perspective: 800;
   width: 1040px;
   height: 70px;
-  margin-bottom: 15px;
+  margin-bottom: 12px;	
 }
 .flip .card.flipped {
 	-webkit-transform: rotatex(-180deg);
@@ -408,18 +408,10 @@ input[type=text] {
   cursor: pointer;
 }
 
-
-
-
-
-
-
-
 .front .p1url{
 	width: 520px;
 	height: 100%;
 	margin: 0 auto;
-	/*background-color: #fff;*/
 	padding: 0px 20px 0px 30px;
 	line-height: 70px;
 	display: inline-block;
@@ -433,12 +425,11 @@ input[type=text] {
 	width: 420px;
 	height: 100%;
 	margin: 0 auto;
-	/*background-color: #fff;*/
 	padding: 0px 20px 0px 30px;
 	line-height: 70px;
 	display: inline-block;
-	font-size: 13px;
-	color: #b4bcce;
+	font-size: 14px;
+	color: #95208d;
 }
 
 .back .menu, .back .del{
@@ -450,14 +441,29 @@ input[type=text] {
 
 .back .helper{
 	position: absolute;
-	width: 500px;
-	/*background-color: red;*/
+	width: 900px;
 	font-size: 13px;
 	padding-top: 5px;
 	padding-left: 5px;
 	color: #b4bcce;
-	/*height: 20px;*/
+	height: 20px;
+	z-index: 99999;
 }
+
+.helper .one{
+	position: absolute;
+	left: 15px;
+	top: 5px;
+}
+.helper .two{
+	position: absolute;
+	left: 515px;
+	top: 5px;
+}
+
+
+
+
 .back input{
 	/*border: 1px solid red;*/
 }

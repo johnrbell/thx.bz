@@ -12,6 +12,13 @@ $('.front .menu').on("click", function(e){
 	selected = true
 })
 
+$( ".front" ).dblclick(function() {
+	$('.card').removeClass('flipped')
+	$('.saved').removeClass('hoveredon')
+	$(this).parent().toggleClass('flipped')
+	selected = true
+});
+
 $('.back .menu').on("click",function(e){
 	$('.card').removeClass('flipped')
 	selected = false
@@ -20,26 +27,18 @@ $('.back .menu').on("click",function(e){
 
 
 
+//WHEN YOU SELECT AN EDIT BOX ON THE BACK
 $('.back .source,.back .destination').on("focus", function(e){
 	$(this).css({'font-style':'italic'})
 	// fontsize = fontresize(7,$(this).css("font-size") )
 	// $(this).css({'font-size':fontsize})
 	selected = true
 })
-
 $('.card,.back .source,.back .destination').on("focusout", function(e){
 	$(this).css({'font-style':'normal'})
 	// fontsize = fontresize(-7,$(this).css("font-size") )
 	// $(this).css({'font-size':fontsize})
-	// selected = false
 })
-
-
-
-
-
-
-
 
 //HOVER ON ROWS IF NOTHING IS FLIPPED CURRENTLY 
 $('.front').on("mouseover", function(e){
@@ -143,9 +142,6 @@ $('.saved input').keydown(function(e) {
 	 	pulseSaved(row)
   }
 });
-
-
-
 
 //UP AND DOWN ARROWS TO MOVE THROUGH INPUTS
 // $('.saved input').keydown(function(e) {
