@@ -410,7 +410,7 @@ input[type=text] {
   -webkit-perspective: 800;
   width: 1040px;
   height: 70px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 .flip .card.flipped {
 	-webkit-transform: rotatex(-180deg);
