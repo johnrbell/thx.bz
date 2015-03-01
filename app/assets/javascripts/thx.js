@@ -18,7 +18,7 @@ $(".main-input .add").on("click", function(e){
 		create_link();
 })
 
-//WHEN YOU CLICK ON THE FRONT ... BUTTON, FLIP TO EDIT
+//WHEN YOU CLICK ON THE FRONT MENU BUTTON, FLIP TO BACK TO EDIT
 $('.front .menu').on("click", function(e){
 	$('.card').removeClass('flipped')
 	$('.saved').removeClass('hoveredon')
@@ -30,7 +30,7 @@ $('.front .menu').on("click", function(e){
 	selected = true
 })
 
-//WHEN YOU CLICK ON THE REAR ... BUTTON, FLIP BACK TO FRONT
+//WHEN YOU CLICK ON THE REAR MENU BUTTON, FLIP TO FRONT
 $('.back .menu').on("click",function(e){
 	$('.card').removeClass('flipped')
 	selected = false
