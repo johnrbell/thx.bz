@@ -1,7 +1,5 @@
 @charset "utf-8";
 
-
-
 /*================================================================
 	Resets
 ================================================================*/
@@ -114,7 +112,7 @@ body {
 /*================================================================
 	TEXT 
 ================================================================*/
-input[type=text] {
+.main-input input[type=text] {
    border: 0;
    padding: 0;
    margin: 0;
@@ -128,7 +126,6 @@ input[type=text] {
 input{
 	cursor: pointer;
 }
-
 
 
 /*================================================================
@@ -216,11 +213,41 @@ input{
 /*================================================================
   SAVED LIST
 ================================================================*/
+.back .saved .source {
+	border: 1px solid #c6c6e3;
+	width: 320px;
+	margin: 25px 10px 0px 20px;
+	
+	font-size: 14px;
+	
+	/*background-color: blue;*/
+}
+.back .saved .destination {
+	border: 1px solid #c6c6e3;
+	width: 380px;
+	margin: 25px 10px 0px 0px;
+	
+	font-size: 14px;
+	
+	/*background-color: red;*/
+}
+.back .saved .counter {
+	text-align: center;
+	width: 200px;
+	padding: 0px 30px;
+	line-height: 70px;
+	font-size: 14px;
+	color: #95208d;
+}
+
+
+
 .saved-list {
 	/*box-shadow: 0px 3px 0px #c6c6e3;*/
 }
 .saved{
 	margin: 0 auto;
+	font-family: 'Code Pro W01 Lowercase', Helvetica, Arial, sans-serif;
 }
 .saved {
 	width: 1040px;
@@ -246,22 +273,6 @@ input{
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
-.saved .source {
-	width: 520px;
-	padding: 0px 30px;
-	line-height: 70px;
-	font-size: 18px;
-	font-family: 'Code Pro W01 Lowercase', Helvetica, Arial, sans-serif;
-	background: no-repeat center center;
-}
-.saved .destination {
-	width: 420px;
-	padding: 0px 20px 0px 30px;
-	line-height: 70px;
-	font-size: 14px;
-	color: #95208d;
-	background: no-repeat center center;
-}
 .saved .source span {
 	display: inline-block;
 }
@@ -279,7 +290,7 @@ input{
 	-o-transition: opacity .1s ease-in-out;
 	transition: opacity .1s ease-in-out;
 }
-.saved .btn:hover {
+.flipped .btn:hover,.hoveredon .btn:hover {
 	opacity: 1;
 }
 .saved .menu .btn {
@@ -292,18 +303,17 @@ input{
 	background-image: url('/arrow.png');
 }
 .saved .del .btn {
-	background-image: url('/trash.png');
+	background-image: url('/del.png');
 }
-.saved .url {
-	height: 70px;
-	padding: 0px 30px;
+.back .menu .btn {
+	background-image: url('/back.png');
 }
 .savedmsg{
 	z-index: 999999;
 	display: none;
 	position: absolute;
   width: 1040px;
-  height: 50px;
+  height: 70px;
   text-align: center;
   background-color: white;
 }
@@ -411,19 +421,21 @@ input{
 	font-size: 14px;
 	color: #95208d;
 }
+
 .back .menu, .back .del{
 	background-color: #fff
 }
 .back .saved{
 	background-color: #fff
 }
+
 .back .helper{
 	position: absolute;
 	width: 900px;
 	font-size: 13px;
 	padding-top: 5px;
 	padding-left: 5px;
-	color: #b4bcce;
+	color: #999;
 	height: 20px;
 	z-index: 99999;
 }
@@ -434,6 +446,6 @@ input{
 }
 .back .helper .two{
 	position: absolute;
-	left: 515px;
+	left: 535px;
 	top: 5px;
 }

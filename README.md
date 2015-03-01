@@ -24,7 +24,7 @@ A colleague came to me with the example he commonly deals with:
 
 >for example: all of our design screenshots are stored in invision, all of our design psds are on box.com, all of our design spec (documents) are on google drive, all of our tech spec docs are on confluence...
 
->every single one of these tools produces some share link and it's always some god damned giant mess, like invision.com/share/lkdsfn432jasdfjkl421231?MULTI=true
+>every single one of these tools produces some share link and it's always some giant mess, like invision.com/share/lkdsfn432jasdfjkl421231?MULTI=true
 
 >now imagine i need to give our developers a link to one of our designs... i have to get that share link and post it to confluence, in their tech spec
 
@@ -48,8 +48,17 @@ A colleague came to me with the example he commonly deals with:
 
 Backend is Rails. 
 
-Front end is Javascript, JQuery, Skeleton.css, and lots of custom CSS
+Front end is JavaScript, jQuery, and lots of custom CSS
 
 Database is PSQL
 
 Deployed via Heroku with a custom domain.
+
+
+## Challenges
+
+Management of dynamic subdomains, handling routing for these.
+
+Session management from scratch. 
+
+All design work for front end is done with custom CSS and JavaScript and jQuery
