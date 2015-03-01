@@ -24,6 +24,9 @@ $('.front .menu').on("click", function(e){
 	$('.saved').removeClass('hoveredon')
 	$(this).parent().addClass('hoveredon')
 	$(this).parents('.card').toggleClass('flipped')
+	$(this).parents('.card').find('.back .source').val($(this).parents('.card').find('.front .p2url').text())
+	$(this).parents('.card').find('.back .destination').val($(this).parents('.card').find('.front .p3url').text())
+	$(this).parent('.card').find('.back .source').focus()
 	selected = true
 })
 
@@ -67,6 +70,9 @@ $( ".front" ).dblclick(function() {
 	$('.card').removeClass('flipped')
 	$('.saved').removeClass('hoveredon')
 	$(this).parent().toggleClass('flipped')
+	$(this).parents('.card').find('.back .source').val($(this).parents('.card').find('.front .p2url').text())
+	$(this).parents('.card').find('.back .destination').val($(this).parents('.card').find('.front .p3url').text())
+	$(this).parent('.card').find('.back .source').focus()
 	selected = true
 });
 
