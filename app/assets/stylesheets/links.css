@@ -214,7 +214,7 @@ input{
 ================================================================*/
 .back .saved .source {
 	border: 1px solid #c6c6e3;
-	width: 320px;
+	width: 220px;
 	margin: 25px 10px 0px 20px;
 	font-size: 14px;
 	background-color: #fff;
@@ -222,7 +222,7 @@ input{
 }
 .back .saved .destination {
 	border: 1px solid #c6c6e3;
-	width: 380px;
+	width: 480px;
 	margin: 25px 10px 0px 0px;
 	font-size: 14px;
 	background-color: #fff;
