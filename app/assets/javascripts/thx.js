@@ -76,19 +76,16 @@ $( ".front" ).dblclick(function() {
 	selected = true
 });
 
-//WHEN YOU SELECT AN EDIT BOX ON THE BACK, MAKE ITALIC
-$('.back .source,.back .destination').on("focus", function(e){
-	$(this).css({'font-style':'italic'})
-	// fontsize = fontresize(7,$(this).css("font-size") )
-	// $(this).css({'font-size':fontsize})
-	selected = true
-})
-//WHEN YOU UNSELECT AN EDIT BOX ON THE BACK, MAKE NORMAL
-$('.back .source,.back .destination').on("focusout", function(e){
-	$(this).css({'font-style':'normal'})
-	// fontsize = fontresize(-7,$(this).css("font-size") )
-	// $(this).css({'font-size':fontsize})
-})
+//WHEN YOU SINGLE CLICK A ROW OF SAVED, WHILE EDITING, STOP EDITING
+$( "span" ).click(function() {
+	if (selected == true){
+		$('.card').removeClass('flipped')
+		$('.saved').removeClass('hoveredon')
+		$(this).parents('.saved').addClass('hoveredon')
+		selected = false
+	}
+});
+
 
 
 

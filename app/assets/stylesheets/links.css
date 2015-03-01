@@ -228,7 +228,7 @@ input{
 	color: #95208d;
 }
 .back .saved .destination:focus,.back .saved .source:focus{
-	/*background-color: #e1ecf9;*/
+	font-style: italic;
 }
 .back .saved .counter {
 	text-align: center;
