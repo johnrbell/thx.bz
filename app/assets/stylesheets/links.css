@@ -64,7 +64,6 @@ html, body {
 body {
 	margin: 0;
 	background: #c9daec;
-	/*font-family: 'HelveticaNeueW01-45Ligh', Helvetica, Arial, sans-serif;*/
 	font-family: 'Code Pro W01 Lowercase', Helvetica, Arial, sans-serif;
 	font-size: 14px;
 	line-height: 18px;
@@ -190,7 +189,6 @@ input{
 	line-height: 70px;
 	text-align: left;
 	color: #b4bcce;
-	font-family: 'Code Pro W01 Lowercase', Helvetica, Arial, sans-serif;
 }
 .main-input .source {
 	width: 471px;
@@ -217,19 +215,20 @@ input{
 	border: 1px solid #c6c6e3;
 	width: 320px;
 	margin: 25px 10px 0px 20px;
-	
 	font-size: 14px;
-	
-	/*background-color: blue;*/
+	background-color: #fff;
+	color: #95208d;
 }
 .back .saved .destination {
 	border: 1px solid #c6c6e3;
 	width: 380px;
 	margin: 25px 10px 0px 0px;
-	
 	font-size: 14px;
-	
-	/*background-color: red;*/
+	background-color: #fff;
+	color: #95208d;
+}
+.back .saved .destination:focus,.back .saved .source:focus{
+	background-color: #e1ecf9;
 }
 .back .saved .counter {
 	text-align: center;
@@ -240,14 +239,11 @@ input{
 	color: #95208d;
 }
 
-
-
 .saved-list {
 	/*box-shadow: 0px 3px 0px #c6c6e3;*/
 }
 .saved{
 	margin: 0 auto;
-	font-family: 'Code Pro W01 Lowercase', Helvetica, Arial, sans-serif;
 }
 .saved {
 	width: 1040px;
@@ -322,7 +318,6 @@ input{
   padding-top: 26px;
   color: #95208d;
   font-size: 3em;
-	font-family: 'Code Pro W01 Lowercase', Helvetica, Arial, sans-serif;
 }
 
 
@@ -336,7 +331,6 @@ input{
 	text-align: center;
 	margin: 20px 0px;
 	line-height: 30px;
-	font-family: 'Code Pro W01 Lowercase', Helvetica, Arial, sans-serif;
 }
 .footer a, .footer a:hover, .footer a:visited{
 	text-decoration: none;
@@ -367,7 +361,7 @@ input{
   -webkit-perspective: 800;
   width: 1040px;
   height: 70px;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 .flip .card.flipped {
 	-webkit-transform: rotatex(-180deg);
@@ -442,10 +436,5 @@ input{
 .back .helper .one{
 	position: absolute;
 	left: 15px;
-	top: 5px;
-}
-.back .helper .two{
-	position: absolute;
-	left: 535px;
 	top: 5px;
 }
