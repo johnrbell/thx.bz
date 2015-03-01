@@ -61,4 +61,6 @@ Management of dynamic subdomains, handling routing for these.
 
 Session management from scratch. 
 
-All design work for front end is done with custom CSS and JavaScript and jQuery
+All front end styling done with custom CSS 
+
+All front end mouse/key actions are JavaScript and jQuery
