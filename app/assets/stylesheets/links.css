@@ -131,8 +131,8 @@ input{
 	HEADER/LOGO/PULSE
 ================================================================*/
 .header {
-	width: 100%;
 	position: relative;
+	width: 100%;
 	height: 360px;
 	margin-bottom: 40px;
 	overflow: hidden;
@@ -154,9 +154,9 @@ input{
 	z-index: 1;
 }
 .pulse {
+	position: absolute;
 	width: 40px;
 	height: 40px;
-	position: absolute;
 	z-index: 0;
 	left: 50%;
 	top: 130px;
@@ -171,8 +171,8 @@ input{
 	MAIN ADD BOXES 
 ================================================================*/
 .main-input {
-	margin-top: 285px;
 	height: 70px;
+	margin-top: 285px;
 	background: #fff;
 	font-size: 18px;
 	box-shadow: 0px 3px 0px #c6c6e3;
@@ -366,21 +366,21 @@ input{
 	CARD FLIP CLASSES
 ================================================================*/
 .flip {
-  -webkit-perspective: 800;
   width: 1040px;
   height: 70px;
   margin-bottom: 16px;
+  -webkit-perspective: 800; /*THIS LINE BREAKS OVERLAP*/
 }
 .flip .card.flipped {
-	-webkit-transform: rotatex(-180deg);
 	box-shadow: 0px -10px 10px rgba(10,51,97,.1);
  	z-index: 99;
+	-webkit-transform: rotatex(-180deg);
 }
 .flip .card {
   width: 100%;
   height: 100%;
-  -webkit-transform-style: preserve-3d;
   -webkit-transition: 0.5s;
+  -webkit-transform-style: preserve-3d; /*THIS LINE BREAKS OVERLAP*/
 }
 .flip .card .face {
   width: 100%;
@@ -389,16 +389,16 @@ input{
   -webkit-backface-visibility: hidden;
 }
 .flip .card .front {
+  z-index: 1; /*THIS LINE BREAKS OVERLAP*/
   position: absolute;
-  z-index: 1;
   background: black;
   color: white;
   cursor: pointer;
 }
 .flip .card .back {
-  -webkit-transform: rotatex(-180deg) scale(1.01,1.14);
   color: #95208d;
   cursor: pointer;
+  -webkit-transform: rotatex(-180deg) scale(1.01,1.14);
 }
 .front .p1url{
 	width: 520px;
@@ -406,9 +406,9 @@ input{
 	margin: 0 auto;
 	padding: 0px 20px 0px 30px;
 	line-height: 70px;
-	display: inline-block;
 	font-size: 18px;
 	color: #b4bcce;
+	display: inline-block;
 }
 .front .p2url{
 	color: #95208d;
@@ -419,9 +419,9 @@ input{
 	margin: 0 auto;
 	padding: 0px 20px 0px 30px;
 	line-height: 70px;
-	display: inline-block;
 	font-size: 14px;
 	color: #95208d;
+	display: inline-block;
 }
 
 .back .menu, .back .del{
