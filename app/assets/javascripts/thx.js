@@ -114,16 +114,19 @@ $('.front').on("mouseout", function(e){
 //ONLY ALLOWS ALPHANUMERIC INPUT FOR LOCAL/SOURCE
 $('.source').keypress(function(e) {
 	regex = new RegExp("[a-zA-Z0-9|_|-]")
-	key = e.keyCode
-	key2 = String.fromCharCode(e.keyCode)
+	key = e.which
+	key2 = String.fromCharCode(e.which)
+	// debugger
+	console.log(key)
 	if ((regex.test(key2) == false)||(key ==32)){
+		console.log('test')
 		e.preventDefault()
 	}
 });
 
 //FOR EITHER NEW INPUT, ON ENTER KEY- SUBMIT FOR ADDING NEW ROUTE
 $('.main-input input').keydown(function(e) {
-	if (e.keyCode == 13){ //enter key
+	if (e.which == 13){ //enter key
 		e.preventDefault()
 		create_link();
 	}	
@@ -131,7 +134,7 @@ $('.main-input input').keydown(function(e) {
 
 //IN EDIT INPUTS, ON ENTER KEY- SUBMIT THE EDIT, UPDATE FRONT, SHOW SAVED MSG, FLIP BACK.
 $('.saved input').keydown(function(e) {
-  if (e.keyCode == 13){ //enter key
+  if (e.which == 13){ //enter key
   	pulseLogo();
   	//gets all the data needed to save
   	saved = $(this).parents('.saved')
