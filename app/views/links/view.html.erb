@@ -44,7 +44,7 @@
 						<form method='POST' id='editform' action='/links/edit/<%= link.id %>'>
 							<input class="auth" name='authenticity_token' value='<%= form_authenticity_token() %>' type='hidden'>
 								<ul class="saved" data-id="<%= link.id %>">
-									<li><div class="helper"><div class="one">Click to Edit Route, Press Enter to Save</div></div></li>
+									<li><div class="helper"><div class="one">Click to Edit, Press Enter to Save</div></div></li>
 									<li><input type="text" name="local" class="url source" value="<%= link.local %>"></input></li>
 									<li><input type="text" name="external" class="url destination" value="<%= link.external %>"></input></li>
 									<li><div class="counter">Hit <%= link.counter %> times.</div></li>

@@ -224,5 +224,5 @@ function create_link(){
 //FLASH RING WHEN ALL IMAGES LOAD AFTER A REFRESH
 $('body').imagesLoaded( function() {
   pulseLogo();
-	// $('.card').addClass('flipped')
+	$('.card').addClass('flipped')
 });
