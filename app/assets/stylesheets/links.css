@@ -369,24 +369,34 @@ input{
   width: 1040px;
   height: 70px;
   margin-bottom: 16px;
-  -webkit-perspective: 800; /*THIS LINE BREAKS OVERLAP*/
+  perspective: 800;
+  -moz-perspective: 800;
+  -webkit-perspective: 800; 
 }
 .flip .card.flipped {
 	box-shadow: 0px -10px 10px rgba(10,51,97,.1);
  	z-index: 99;
+ 	transform: rotatex(-180deg);
 	-webkit-transform: rotatex(-180deg);
+	-moz-transform: rotatex(-180deg);
 }
 .flip .card {
   width: 100%;
   height: 100%;
+  transition: 0.5s;
   -webkit-transition: 0.5s;
-  -webkit-transform-style: preserve-3d; /*THIS LINE BREAKS OVERLAP*/
+  -moz-transition: 0.5s;
+  transform-style: preserve-3d; 
+  -webkit-transform-style: preserve-3d; 
+  -moz-transform-style: preserve-3d; 
 }
 .flip .card .face {
   width: 100%;
   height: 100%;
   position: absolute;
+  backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
 }
 .flip .card .front {
   z-index: 1; /*THIS LINE BREAKS OVERLAP*/
@@ -396,9 +406,13 @@ input{
   cursor: pointer;
 }
 .flip .card .back {
+	z-index: 2;
   color: #95208d;
   cursor: pointer;
+  transform: rotatex(-180deg) scale(1.01,1.14);
   -webkit-transform: rotatex(-180deg) scale(1.01,1.14);
+  -moz-transform: rotatex(-180deg) scale(1.01,1.14);
+
 }
 .front .p1url{
 	width: 520px;
@@ -432,6 +446,7 @@ input{
 }
 
 .back .helper{
+	display: none;
 	position: absolute;
 	width: 900px;
 	font-size: 11px;
