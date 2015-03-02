@@ -168,7 +168,7 @@ function pulseSaved(row){
  	$(row).css('display','block')
 		setTimeout(function(){ 
 		$(row).transition({
-			scale: .1, opacity: 0, duration: 400
+			scale: 1, opacity: 1, duration: 400
 		}, function(){
 		  $(row).transition({
 			scale: 1, opacity: 1, duration: 400,display: "none"
