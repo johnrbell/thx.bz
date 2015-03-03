@@ -1,10 +1,12 @@
+<%= stylesheet_link_tag "login", :media => "all" %>
 <center>
-<div class="container">
+<div class="header">
   <div class="row">
-    <div class="twelve columns">
-      <h2><b>Reset PW @ thx.bz</b></h2>
+    <div class="title">
+    <img src='/logo.png'><br>
+      <!-- <h2><b>Log In @ thx.bz</b></h2> -->
       <i>Simple links for your business, thx us later.</i>
-      <hr>
+      <!-- <hr> -->
     </div>
   </div>
 </div>
@@ -18,10 +20,10 @@
 
 	<div class="forgot">
     <form method='POST' action='/users/reset'>
-    	<label>Name</label>
-    	<input class='inputbox' type="text" name="name" placeholder="Name" required="required" /><br>
-      <label>Email</label>
-      <input class='inputbox' type="text" name="email" placeholder="Email" required="required" /><br>
+    	<!-- <label>Name</label> -->
+    	<input class='inputbox name' type="text" name="name" placeholder="Name" required="required" /><br>
+      <!-- <label>Email</label> -->
+      <input class='inputbox email' type="text" name="email" placeholder="Email" required="required" /><br>
 
       <input name='authenticity_token' value='<%= form_authenticity_token() %>' type='hidden'><br>
       <button class="button" type="submit" id="loginbutton">Reset My Password</button><br>

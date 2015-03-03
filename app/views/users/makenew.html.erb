@@ -1,10 +1,12 @@
+<%= stylesheet_link_tag "login", :media => "all" %>
 <center>
-<div class="container">
+<div class="header">
   <div class="row">
-    <div class="twelve columns">
-      <h2><b>Make New PW @ thx.bz</b></h2>
+    <div class="title">
+    <img src='/logo.png'><br>
+      <!-- <h2><b>Log In @ thx.bz</b></h2> -->
       <i>Simple links for your business, thx us later.</i>
-      <hr>
+      <!-- <hr> -->
     </div>
   </div>
 </div>
@@ -15,15 +17,16 @@
       <h3 style='color:red;'>Something doesn't match.</h3>
     </center>
   <% end %>
-
+  <div class="makenew">
     <form method='POST' action='/users/updatepw'>
-    	<label>Name</label>
-    	<input class='inputbox' type="text" name="name" placeholder="Name" required="required" /><br>
-      <label>Temp Password</label>
-      <input class='inputbox' type="text" name="temppw" placeholder="Email" required="required" /><br>
-      <label>New Password</label>
-      <input class='inputbox' type="text" name="new_pw" placeholder="Email" required="required" /><br>
+    	<!-- <label>Name</label> -->
+    	<input class='inputbox name' type="text" name="name" placeholder="Name" required="required" /><br>
+      <!-- <label>Temp Password</label> -->
+      <input class='inputbox temppw' type="text" name="temppw" placeholder="Temporary PW" required="required" /><br>
+      <!-- <label>New Password</label> -->
+      <input class='inputbox newpw' type="text" name="new_pw" placeholder="New PW" required="required" /><br>
       <input name='authenticity_token' value='<%= form_authenticity_token() %>' type='hidden'><br>
       <button class="button" type="submit" id="loginbutton">Update My Password</button><br>
     </form>
-	</div>
+  </div>
+  </div>

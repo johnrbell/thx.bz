@@ -1,10 +1,12 @@
+<%= stylesheet_link_tag "login", :media => "all" %>
 <center>
-<div class="container">
+<div class="header">
   <div class="row">
-		<div class="twelve columns">
-			<h2><b>Log In @ thx.bz</b></h2>
+		<div class="title">
+		<img src='/logo.png'><br>
+			<!-- <h2><b>Log In @ thx.bz</b></h2> -->
 			<i>Simple links for your business, thx us later.</i>
-			<hr>
+			<!-- <hr> -->
 		</div>
 	</div>
 </div>
@@ -19,14 +21,14 @@
 
 	<div class="login">
     <form method='POST' action='/sessions/create'>
-    	<label>Name</label>
-    	<input class='inputbox' type="text" name="name" placeholder="Name" required="required" /><br>
-    	<label>Password</label>
-      <input class='inputbox' type="password" name="password" placeholder="Password" required="required" /><br>
+    	<!-- <label>Name</label> -->
+    	<input class='inputbox name' type="text" name="name" placeholder="Name" required="required" /><br>
+    	<!-- <label>Password</label> -->
+      <input class='inputbox pw' type="password" name="password" placeholder="Password" required="required" /><br>
       <input name='authenticity_token' value='<%= form_authenticity_token() %>' type='hidden'><br>
       <button class="button" type="submit" id="loginbutton">Log In</button><br>
       <a class="button" href="/users/new">Sign Up</a><br>
-      <a href='/users/forgot'>Forgot Password?</a>
+      <a class="button" href='/users/forgot'>Forgot Password?</a>
     </form>
 	</div>
 </div>

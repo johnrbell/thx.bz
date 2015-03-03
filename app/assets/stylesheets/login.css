@@ -1,0 +1,99 @@
+body {
+	margin: 0;
+	background: #0789c0;
+	font-family: 'Code Pro W01 Lowercase', Verdana, Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	line-height: 18px;
+	color: #fff;
+}
+
+.header{
+	/*padding-top: 40px;*/
+	padding: 60px 0px;
+}
+
+input{
+	  border: 1px solid #ccc; 
+    outline:0; 
+    height:55px; 
+    width: 425px; 
+    font-size: 20px;
+    padding: 5px 10px;
+  	font-family: 'Code Pro W01 Lowercase', Verdana, Helvetica, Arial, sans-serif;
+}
+
+.login .pw{
+	margin-top: -5px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+
+.login .name{
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+}
+
+.button{
+	background-color: #e9f3fd;
+  border: 1px solid #ccc; 
+  border-radius: 5px;
+  color: #2b86ec;
+  display: block;
+  font-weight: bold;
+  outline: 0;
+  height: 40px;
+  width: 445px;
+  font-size: 14px;
+	font-family: 'Code Pro W01 Lowercase', Verdana, Helvetica, Arial, sans-serif;
+}
+
+a.button{
+	/*padding: 0 auto;*/
+	/*background-color: red;*/
+	font-size: 14px;
+	height: 30px;
+	padding-top: 10px;
+	text-decoration: none;
+	font-family: 'Code Pro W01 Lowercase', Verdana, Helvetica, Arial, sans-serif;
+}
+
+.signup .pw{
+	margin-top: -5px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+
+.signup .name{
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+}
+.signup .email{
+	margin-top: -5px;
+}
+
+.forgot .email{
+	margin-top: -5px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+
+.forgot .name{
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+}
+
+.makenew .name{
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+}
+
+.makenew .temppw{
+margin-top: -5px;
+}
+
+.makenew .newpw{
+	
+		margin-top: -5px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
