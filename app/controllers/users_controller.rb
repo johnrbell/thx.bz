@@ -83,11 +83,10 @@ class UsersController < ApplicationController
 	def accessupdate #make a new pw page
 		newaccesspw = params[:accesspw]
 		user = User.find_by(name: params[:user])
-		
 			user.accesspw = newaccesspw
+			binding.pry
 			user.save
 			redirect_to '/access'
-		
 	end
 
 	def accessgrant
