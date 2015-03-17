@@ -15,9 +15,10 @@
 
 <center>It seems you haven't hit a route for this user before. 
 			<br>Please enter the access password one time...
+			<br>If you haven't set one, just click submit.
 			<br><br>
     <form method='POST' action='/testaccess/<%= user.id %>/<%= link.id %>'>
-			<input class='inputbox accesspw' type="text" name="accesspw" placeholder="access password" required="required" /><br>
+			<input class='inputbox accesspw' type="text" name="accesspw" placeholder="access password"/><br>
       <input name='authenticity_token' value='<%= form_authenticity_token() %>' type='hidden'><br>
       <button class="button" type="submit" id="loginbutton">Submit</button><br>
     </form>
