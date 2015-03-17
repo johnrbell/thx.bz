@@ -74,4 +74,37 @@ class UsersController < ApplicationController
 		end
  	end
 
+	def access #make a new pw page
+		user = User.find_by(id: session[:user_id])
+		
+		render(:access, { locals: {user: user}})
+	end
+
+	def accessupdate #make a new pw page
+		newaccesspw = params[:accesspw]
+		user = User.find_by(name: params[:user])
+		
+			user.accesspw = newaccesspw
+			user.save
+			redirect_to '/access'
+		
+	end
+
+	def accessgrant
+		user = User.find_by(id: params[:user])
+		link = Link.find_by(id: params[:link])
+		render(:grant, { locals:{user: user, link: link}})
+	end
+
+	def testaccess
+		user = User.find_by(id: params[:user])
+		link = Link.find_by(id: params[:link])
+		if params[:accesspw] == user.accesspw
+			session[:accesspw] = user.accesspw
+			redirect_to link.external
+		else
+			redirect_to '/404.html'
+		end
+
+	end
 end

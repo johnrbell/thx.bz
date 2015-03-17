@@ -19,6 +19,12 @@ Rails.application.routes.draw do
   post '/links/kill/:id' => 'links#kill' #does the kill for a link
   post '/links/create' => 'links#create' #does the add a link
 
+  get '/access' => 'users#access' #shows access page for user
+  post '/access/:user' => 'users#accessupdate' #post data to update/create access
+
+  get '/accessgrant/:user/:link' => 'users#accessgrant' #page that asks for access
+  post '/testaccess/:user/:link' => 'users#testaccess' #post that saves data
+
   # match '/', to: 'users#index', constraints: { subdomain: 'www' }, via: [:get]
   match '/:local', to: 'links#redirect', constraints: { subdomain: /.+/ }, via: [:get]
 

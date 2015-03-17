@@ -1,0 +1,27 @@
+<%= stylesheet_link_tag "login", :media => "all" %>
+<center>
+<div class="header">
+  <div class="row">
+		<div class="title">
+		<img src='/logo.png'><br>
+			<!-- <h2><b>Log In @ thx.bz</b></h2> -->
+			<i>Simple links for your business, thx us later.</i>
+			<!-- <hr> -->
+		</div>
+	</div>
+</div>
+
+<div id='loginform'>
+	<div class="login">
+	Access Controls<br>
+	When someone hits one of your routes, it will ask for this key the first time.<br>
+	A cookie will be stored granting that browser access until you change this key<br>
+
+	
+	<br><br>
+	<form method='POST' action='/access/<%= session[:user_name] %>'>
+	<input class='inputbox accesspw' type="text" name="accesspw" value="<%= user.accesspw %>" required="required"/><br>
+	<input name='authenticity_token' value='<%= form_authenticity_token() %>' type='hidden'><br>
+	<button class="button" type="submit" id="loginbutton">Update</button><br>
+	</div>
+</div>

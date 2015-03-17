@@ -1,4 +1,26 @@
 class LinksController < ApplicationController
+	def redirect
+		user = User.find_by(name: request.subdomain.downcase)
+			if user == nil
+				redirect_to '/404.html'
+			else
+				link = Link.find_by(local: params[:local].downcase, user_id: user.id)
+				if link
+					if session[:accesspw] == user.accesspw
+						link.counter += 1
+						link.save
+						redirect_to link.external
+					else
+						redirect_to '/accessgrant/'+user.id.to_s+'/'+link.id.to_s
+					end
+					
+				else
+					redirect_to '/404.html'
+				end				
+			end
+	end
+
+
 	def view
 		if  (request.subdomain.downcase == '') ||  (request.subdomain.downcase == 'www') 
 			if (session[:user_id] != nil)
@@ -15,22 +37,6 @@ class LinksController < ApplicationController
 			end
 			redirect_to (url)
 		end
-	end
-
-	def redirect
-		user = User.find_by(name: request.subdomain.downcase)
-			if user == nil
-				redirect_to '/404.html'
-			else
-				link = Link.find_by(local: params[:local].downcase, user_id: user.id)
-				if link
-					link.counter += 1
-					link.save
-					redirect_to link.external
-				else
-					redirect_to '/404.html'
-				end				
-			end
 	end
 
 	def kill
