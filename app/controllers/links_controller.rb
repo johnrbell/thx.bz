@@ -64,6 +64,7 @@ class LinksController < ApplicationController
 	def edit
 		link = Link.find_by(id: params[:id])
 		link.local  = params[:local]
+		link.local = link.local.gsub(" ","")
 	 	link.external = params[:external]
 		link.save
 		redirect_to '/links'
