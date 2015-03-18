@@ -39,7 +39,6 @@ $('.back .menu').on("click",function(e){
 //GO BUTTON ON SAVED ROW, OPENS NEW WINDOW USING THX.BZ ROUTE
 $(".front .arrow").on("click", function(e){
 	if (selected == false){
-		debugger
 		url = $(this).attr('data-loc')
 		domain = document.location.host.replace('www.','') 
 		url = url.replace('!!HOST!!',domain)
